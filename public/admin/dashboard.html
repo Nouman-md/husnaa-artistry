@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | Husna Artistry</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div id="toastContainer" class="toast-container"></div>
+
+<div class="admin-shell">
+  <nav class="admin-nav">
+    <div class="admin-nav-brand">
+      <img src="../assets/husna-logo.jpg" alt="Husna Artistry">
+      <span>Husna Artistry</span>
+    </div>
+    <div class="admin-nav-link active" data-panel="dashboardPanel">Dashboard</div>
+    <div class="admin-nav-link" data-panel="productsPanel">Products</div>
+    <div class="admin-nav-link" data-panel="categoriesPanel">Categories</div>
+    <div class="admin-nav-link" data-panel="ordersPanel">Orders</div>
+    <div class="admin-nav-link" data-panel="usersPanel">Customers</div>
+    <button class="btn btn-outline admin-nav-logout" id="adminLogoutBtn">Log Out</button>
+  </nav>
+
+  <main class="admin-main">
+
+    <!-- ================= DASHBOARD ================= -->
+    <section id="dashboardPanel" class="admin-panel active">
+      <h2 class="admin-page-title">Overview</h2>
+      <div class="stat-grid" id="statGrid"></div>
+      <div class="dashboard-two-col">
+        <div class="panel-card">
+          <h3>Recent Orders</h3>
+          <div id="recentOrdersList"></div>
+        </div>
+        <div class="panel-card">
+          <h3>Snapshot</h3>
+          <div id="snapshotList"></div>
+        </div>
+      </div>
+    </section>
+
+<!-- ================= PRODUCTS ================= -->
+
+<section id="productsPanel" class="admin-panel">
+
+  <h2 class="admin-page-title">Products</h2>
+
+  <form id="productForm" class="product-form">
+
+    <input type="hidden" id="productEditId">
+
+
+    <!-- PRODUCT NAME + CATEGORY -->
+
+    <div class="form-row">
+
+      <label>
+        Product Name
+        <input
+          type="text"
+          id="pf-name"
+          required
+        >
+      </label>
+
+      <label>
+        Category
+        <input
+          type="text"
+          id="pf-category"
+          placeholder="e.g. Canvas, Watercolor, Custom"
+          required
+        >
+      </label>
+
+    </div>
+
+
+    <!-- PRICING -->
+
+    <div class="form-row">
+
+      <label>
+        Original Price (₹)
+        <input
+          type="number"
+          id="pf-original-price"
+          min="0"
+          required
+          placeholder="e.g. 2999"
+        >
+      </label>
+
+      <label>
+        Offer Price (₹)
+        <input
+          type="number"
+          id="pf-offer-price"
+          min="0"
+          required
+          placeholder="e.g. 1499"
+        >
+      </label>
+
+    </div>
+
+
+    <!-- SALE + AUTOMATIC DISCOUNT -->
+
+<div class="form-row">
+
+  <label class="sale-toggle">
+    Sale Active
+
+    <select id="pf-sale-active">
+      <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+  </label>
+
+  <label>
+    Discount
+
+    <input
+      type="text"
+      id="pf-discount"
+      value="0% OFF"
+      readonly
+    >
+  </label>
+
+</div>
+
+    <!-- FRAME SIZE -->
+
+    <div class="form-row">
+
+      <label>
+        Frame Size(s)
+
+        <input
+          type="text"
+          id="pf-sizes"
+          placeholder="A4, A3, 12x16 in"
+          required
+        >
+
+      </label>
+
+    </div>
+
+
+    <!-- FRAME COLOR + AVAILABILITY -->
+
+    <div class="form-row">
+
+      <label>
+        Frame Color
+
+        <input
+          type="text"
+          id="pf-color"
+          placeholder="e.g. Walnut, Black, Gold"
+        >
+
+      </label>
+
+
+      <label>
+        Availability
+
+        <select id="pf-stock">
+
+          <option value="made_to_order">
+            Made to Order
+          </option>
+
+          <option value="in_stock">
+            In Stock
+          </option>
+
+        </select>
+
+      </label>
+
+    </div>
+
+
+    <!-- DESCRIPTION -->
+
+    <label>
+
+      Description / Caption
+
+      <textarea
+        id="pf-description"
+        rows="3"
+        required
+        placeholder="Tell the story of this piece..."
+      ></textarea>
+
+    </label>
+
+
+    <!-- PRODUCT IMAGES -->
+
+    <label>
+
+      Product Images
+
+      <input
+        type="file"
+        id="pf-images"
+        accept="image/*"
+        multiple
+      >
+
+    </label>
+
+
+    <!-- IMAGE PREVIEW -->
+
+    <div
+      id="pf-image-preview"
+      class="image-preview-row"
+    ></div>
+
+
+    <!-- FORM ACTIONS -->
+
+    <div class="form-actions">
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+      >
+        Save Product
+      </button>
+
+
+      <button
+        type="button"
+        id="pf-cancel"
+        class="btn btn-outline"
+      >
+        Clear Form
+      </button>
+
+    </div>
+
+  </form>
+
+
+  <!-- ADMIN PRODUCT LIST -->
+
+  <div id="adminProductList"></div>
+
+</section>
+
+    <!-- ================= CATEGORIES ================= -->
+    <section id="categoriesPanel" class="admin-panel">
+      <h2 class="admin-page-title">Categories</h2>
+      <form id="categoryForm" class="product-form" style="flex-direction:row;align-items:flex-end;gap:14px;">
+        <label style="flex:1;">New Category<input type="text" id="cat-name" placeholder="e.g. Framed Canvas" required></label>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+      <div id="adminCategoryList"></div>
+    </section>
+
+    <!-- ================= ORDERS ================= -->
+    <section id="ordersPanel" class="admin-panel">
+      <h2 class="admin-page-title">Orders</h2>
+      <div class="filters-row">
+        <input type="text" id="orderSearch" placeholder="Search by name or mobile...">
+        <select id="orderStatusFilter">
+          <option value="all">All Statuses</option>
+          <option value="placed">Placed</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="shipped">Shipped</option>
+          <option value="delivered">Delivered</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+        <button class="btn btn-outline" id="orderSearchBtn">Search</button>
+        <a href="/api/admin/orders/export/csv" class="btn btn-outline" id="exportOrdersBtn" target="_blank">Export CSV</a>
+      </div>
+      <div id="adminOrdersList"></div>
+    </section>
+
+    <!-- ================= CUSTOMERS ================= -->
+    <section id="usersPanel" class="admin-panel">
+      <h2 class="admin-page-title">Customers</h2>
+      <div id="adminUsersList"></div>
+    </section>
+
+  </main>
+</div>
+
+<script src="admin-api.js"></script>
+<script src="admin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="../motion.js"></script>
+</body>
+</html>

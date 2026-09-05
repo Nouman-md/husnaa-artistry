@@ -1,0 +1,12 @@
+# Environment secrets
+.env
+server/.env
+
+# Dependencies
+node_modules/
+server/node_modules/
+
+# Local/runtime files
+*.log
+.DS_Store
+Thumbs.db

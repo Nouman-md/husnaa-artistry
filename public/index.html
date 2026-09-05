@@ -1,0 +1,1945 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Husna Artistry | Handwritten Arabic Calligraphy Frames</title>
+
+  <meta
+    name="description"
+    content="Husna Artistry — handmade Arabic calligraphy artworks and frames, custom pieces crafted with traditional qalam and modern technique."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     LOADING SCREEN
+     ========================================================= -->
+
+<div id="loadingScreen" class="loading-screen">
+
+  <div class="loading-inner">
+
+    <!-- GOLDEN CIRCLE STROKE -->
+    <svg
+      class="loading-circle"
+      viewBox="0 0 240 240"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <circle
+        id="loadingStroke"
+        cx="120"
+        cy="120"
+        r="94"
+      />
+    </svg>
+
+    <!-- BRAND LOGO -->
+    <div class="loading-logo">
+      <img
+        src="/AS lodinglogo.jpeg"
+        alt="Husna Artistry"
+      >
+    </div>
+
+    <!-- BRAND NAME -->
+    <p class="loading-text">Husna Artistry</p>
+
+  </div>
+
+</div>
+
+
+  </div>
+
+</div>
+
+<!-- =========================================================
+     TOAST
+     ========================================================= -->
+
+<div
+  id="toastContainer"
+  class="toast-container"
+  aria-live="polite"
+  aria-atomic="true"
+></div>
+
+
+<!-- =========================================================
+     SIDEBAR OVERLAY
+     ========================================================= -->
+
+<div
+  id="sidebarOverlay"
+  class="sidebar-overlay"
+  aria-hidden="true"
+></div>
+
+
+<!-- =========================================================
+     SIDEBAR
+     ========================================================= -->
+
+<aside
+  id="sidebar"
+  class="sidebar"
+  aria-hidden="true"
+>
+
+  <div class="sidebar-head">
+
+    <span class="sidebar-brand">
+      HUSNA / ARTISTRY
+    </span>
+
+    <button
+      id="closeSidebar"
+      class="icon-btn"
+      type="button"
+      aria-label="Close navigation"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <nav class="sidebar-nav">
+
+    <a
+      href="#home"
+      class="sidebar-link"
+    >
+      Home
+    </a>
+
+    <a
+      href="#products"
+      class="sidebar-link"
+    >
+      Collection
+    </a>
+
+    <a
+      href="#about"
+      class="sidebar-link"
+    >
+      Story
+    </a>
+
+    <a
+      href="#faq"
+      class="sidebar-link"
+    >
+      FAQ
+    </a>
+
+    <a
+      href="#contact"
+      class="sidebar-link"
+    >
+      Contact
+    </a>
+
+  </nav>
+
+
+  <div class="sidebar-divider"></div>
+
+
+  <p class="sidebar-label">
+    COLLECTIONS
+  </p>
+
+
+  <div
+    id="sidebarCategories"
+    class="sidebar-categories"
+  ></div>
+
+<div class="sidebar-divider"></div>
+
+
+<!-- =========================================================
+     ACCOUNT / SHOPPING
+     ========================================================= -->
+
+<p class="sidebar-label">
+  MY ACCOUNT
+</p>
+
+
+<nav class="sidebar-nav sidebar-account-nav">
+
+  <a
+    href="#orders"
+    class="sidebar-link"
+    id="sidebarOrdersLink"
+  >
+    📦
+    <span>My Orders</span>
+  </a>
+
+  <button
+    type="button"
+    class="sidebar-link sidebar-link-button"
+    id="sidebarWishlistBtn"
+  >
+    ♡
+    <span>Wishlist</span>
+  </button>
+
+  <button
+    type="button"
+    class="sidebar-link sidebar-link-button"
+    id="sidebarCartBtn"
+  >
+    🛒
+    <span>Cart</span>
+  </button>
+
+  <button
+    type="button"
+    class="sidebar-link sidebar-link-button"
+    id="sidebarAccountBtn"
+  >
+    ◯
+    <span>My Account</span>
+  </button>
+
+</nav>
+
+
+<div class="sidebar-divider"></div>
+
+
+<!-- =========================================================
+     AUTHENTICATION
+     ========================================================= -->
+
+<div class="sidebar-actions">
+
+  <button
+    class="sidebar-action-btn"
+    data-open="loginModal"
+    type="button"
+  >
+    Login
+  </button>
+
+  <button
+    class="sidebar-action-btn"
+    data-open="registerModal"
+    type="button"
+  >
+    Register
+  </button>
+
+
+</div>
+</aside>
+
+<!-- =========================================================
+     NAVBAR
+     ========================================================= -->
+
+<header
+  id="navbar"
+  class="navbar"
+>
+
+  <div class="navbar-inner">
+
+
+    <!-- HAMBURGER -->
+
+    <button
+      id="hamburgerBtn"
+      class="icon-btn hamburger"
+      type="button"
+      aria-label="Open navigation"
+      aria-controls="sidebar"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+
+    <!-- BRAND -->
+
+    <a
+      href="#home"
+      class="brand"
+      aria-label="Husna Artistry home"
+    >
+
+     <div class="brand-mark">
+     <img src="/logo.jpeg" alt="Husna Artistry">
+     </div>
+
+      <span class="brand-name">
+        Husna Artistry
+      </span>
+
+    </a>
+
+
+    <!-- DESKTOP NAVIGATION -->
+
+    <nav class="navbar-links">
+
+      <a href="#home">
+        Home
+      </a>
+
+      <a href="#products">
+        Collection
+      </a>
+
+      <a href="#about">
+        About
+      </a>
+
+      <a href="#faq">
+        FAQ
+      </a>
+
+      <a href="#contact">
+        Contact
+      </a>
+
+    </nav>
+
+
+    <!-- DESKTOP SEARCH -->
+
+    <div class="navbar-search">
+
+      <svg
+        viewBox="0 0 24 24"
+        class="search-icon"
+        aria-hidden="true"
+      >
+        <circle
+          cx="11"
+          cy="11"
+          r="7"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+        />
+
+        <path
+          d="M16 16l5 5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+        />
+      </svg>
+
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Search calligraphy pieces..."
+        autocomplete="off"
+      >
+
+    </div>
+
+
+    <!-- NAVBAR ACTIONS -->
+
+    <div class="navbar-icons">
+
+
+      <!-- DARK MODE -->
+
+      <button
+        class="icon-btn"
+        id="darkModeBtn"
+        type="button"
+        aria-label="Toggle dark mode"
+      >
+
+        <svg
+          id="darkModeIcon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linejoin="round"
+          />
+        </svg>
+
+      </button>
+
+
+      <!-- WISHLIST -->
+
+      <button
+        class="icon-btn"
+        id="wishlistBtn"
+        type="button"
+        aria-label="Wishlist"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            d="M12 21s-7.5-4.6-10-9.3C.4 8.4 2 4.5 5.7 4c2-.3 3.9.7 6.3 3 2.4-2.3 4.3-3.3 6.3-3 3.7.5 5.3 4.4 3.7 7.7C19.5 16.4 12 21 12 21z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+          />
+        </svg>
+
+        <span
+          class="badge"
+          id="wishlistBadge"
+        >
+          0
+        </span>
+
+      </button>
+
+
+      <!-- CART -->
+
+      <button
+        class="icon-btn"
+        id="cartBtn"
+        type="button"
+        aria-label="Shopping cart"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+
+          <path
+            d="M4 4h2l2.2 12.3a2 2 0 0 0 2 1.7h7.6a2 2 0 0 0 2-1.6L20 8H6.4"
+            stroke="currentColor"
+            stroke-width="1.7"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <circle
+            cx="10"
+            cy="21"
+            r="1.4"
+            fill="currentColor"
+          />
+
+          <circle
+            cx="18"
+            cy="21"
+            r="1.4"
+            fill="currentColor"
+          />
+
+        </svg>
+
+        <span
+          class="badge"
+          id="cartBadge"
+        >
+          0
+        </span>
+
+      </button>
+
+
+      <!-- ACCOUNT -->
+
+      <button
+        class="icon-btn"
+        id="accountBtn"
+        type="button"
+        aria-label="Account"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+
+          <circle
+            cx="12"
+            cy="8"
+            r="3.6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+          />
+
+          <path
+            d="M4.5 20c1.6-3.8 5-5.6 7.5-5.6s5.9 1.8 7.5 5.6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+          />
+
+        </svg>
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- MOBILE SEARCH -->
+
+  <div class="navbar-search-mobile">
+
+    <div class="search-field">
+
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+
+        <circle
+          cx="11"
+          cy="11"
+          r="7"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        />
+
+        <path
+          d="m16 16 5 5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        />
+
+      </svg>
+
+      <input
+        id="searchInputMobile"
+        type="search"
+        placeholder="Search the collection..."
+        autocomplete="off"
+      >
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+<main>
+
+
+  <!-- =======================================================
+       HERO
+       ======================================================= -->
+
+  <section
+    id="home"
+    class="hero"
+  >
+
+    <div
+  class="hero-pattern"
+  aria-hidden="true"
+></div>
+
+<div class="hero-artwork" aria-hidden="true">
+  <img
+    id="heroArtworkImage"
+    src="assets/hero-islamic-calligraphy-art-white.png"
+    alt=""
+  >
+</div>
+
+
+<div class="hero-content">
+
+      <p class="hero-eyebrow">
+        HANDWRITTEN ARABIC CALLIGRAPHY
+      </p>
+
+
+      <h1>
+     Handmade Islamic &amp; Modern Art
+        <br>
+     <span>Each Stroke Carries Barakah &amp; Beauty</span>
+        </h1>
+
+     <div class="hero-divider" aria-hidden="true">
+  <span class="hero-divider-line"></span>
+  <span class="hero-divider-diamond"></span>
+  <span class="hero-divider-line"></span>
+</div>
+
+      <p class="hero-subtitle">
+        Every piece by Husna Artistry is hand-lettered with
+        traditional qalam and modern technique, then framed
+        to bring calm, meaning, and beauty into your home.
+      </p>
+
+
+      <div class="hero-actions">
+
+        <a
+          href="#products"
+          class="btn btn-primary"
+        >
+          Explore Collection
+        </a>
+
+        <a
+          href="#contact"
+          class="btn btn-outline"
+        >
+          Request a Custom Piece
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       PRODUCTS / COLLECTION
+       ======================================================= -->
+
+  <section
+    id="products"
+    class="products-section"
+  >
+
+    <div class="section-head">
+
+      <p class="section-eyebrow">
+        THE COLLECTION
+      </p>
+
+      <h2 class="section-title">
+        Calligraphy Frames
+      </h2>
+
+      <svg
+        class="section-flourish"
+        viewBox="0 0 140 24"
+        fill="none"
+        aria-hidden="true"
+      >
+
+        <path
+          d="M2 14 C20 2 35 22 55 10 C72 0 90 20 108 9 C118 4 128 9 138 6"
+          stroke="#C9A961"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+
+      </svg>
+
+    </div>
+
+
+    <!-- FILTER BAR -->
+
+    <div class="filters-bar">
+
+
+      <div
+        class="category-filters"
+        id="categoryFilters"
+      >
+
+        <button
+          class="filter-chip active"
+          type="button"
+          data-category="all"
+        >
+          All
+        </button>
+
+      </div>
+
+
+      <div class="filters-right">
+
+
+        <!-- SORT -->
+
+        <select
+          id="sortSelect"
+          class="filter-select"
+          aria-label="Sort collection"
+        >
+
+          <option value="newest">
+            Newest
+          </option>
+
+          <option value="price_asc">
+            Price: Low to High
+          </option>
+
+          <option value="price_desc">
+            Price: High to Low
+          </option>
+
+          <option value="rating">
+            Top Rated
+          </option>
+
+        </select>
+
+
+        <!-- PRICE -->
+
+        <div class="price-filter">
+
+          <input
+            type="number"
+            id="minPrice"
+            placeholder="Min ₹"
+            min="0"
+            aria-label="Minimum price"
+          >
+
+          <span>
+            –
+          </span>
+
+          <input
+            type="number"
+            id="maxPrice"
+            placeholder="Max ₹"
+            min="0"
+            aria-label="Maximum price"
+          >
+
+          <button
+            id="applyPriceFilter"
+            class="btn btn-outline btn-small"
+            type="button"
+          >
+            Go
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- PRODUCT GRID -->
+
+    <div
+      id="productsGrid"
+      class="products-grid"
+    ></div>
+
+
+    <!-- EMPTY STATE -->
+
+    <div
+      id="emptyProductsState"
+      class="empty-state"
+      style="display:none;"
+    >
+
+      <svg
+        viewBox="0 0 24 24"
+        width="40"
+        height="40"
+        aria-hidden="true"
+      >
+
+        <path
+          d="M4 4h16v16H4z"
+          fill="none"
+          stroke="#16305C"
+          stroke-width="1.3"
+        />
+
+        <path
+          d="M4 16l4-4 4 4 4-6 4 6"
+          fill="none"
+          stroke="#C9A961"
+          stroke-width="1.3"
+        />
+
+      </svg>
+
+      <h3>
+        New pieces are being lettered
+      </h3>
+
+      <p>
+        Our collection is being prepared by hand.
+        Please check back soon, or reach out to commission
+        a custom artwork.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       ABOUT
+       ======================================================= -->
+
+  <section
+    id="about"
+    class="about-section"
+  >
+
+    <div
+      class="about-pattern"
+      aria-hidden="true"
+    ></div>
+
+    <div class="about-content">
+
+      <p class="section-eyebrow">
+        THE ARTIST
+      </p>
+
+      <h2 class="section-title">
+        About Husna
+      </h2>
+
+      <svg
+        class="section-flourish"
+        viewBox="0 0 140 24"
+        fill="none"
+        aria-hidden="true"
+      >
+
+        <path
+          d="M2 14 C20 2 35 22 55 10 C72 0 90 20 108 9 C118 4 128 9 138 6"
+          stroke="#C9A961"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+
+      </svg>
+
+
+      <p class="about-text">
+        Hi, I'm Husna and I'm an Arabic calligraphy artist
+        from India, practicing the art since 2020.
+        My journey with calligraphy began as a personal
+        meditation which eventually evolved into a passionate
+        pursuit of blending traditional scripts with modern forms.
+      </p>
+
+
+      <p class="about-text">
+        My work explores a range of surfaces — from canvas
+        with acrylics, to watercolor sheets with watercolors,
+        and glossy sheets using traditional qalam. I also enjoy
+        creating textured art, adding depth and dimension to
+        my calligraphy pieces. I also offer custom calligraphy
+        pieces tailored to individual preferences, making every
+        artwork truly unique.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       FAQ
+       ======================================================= -->
+
+  <section
+    id="faq"
+    class="faq-section"
+  >
+
+    <div class="section-head">
+
+      <p class="section-eyebrow">
+        GOOD TO KNOW
+      </p>
+
+      <h2 class="section-title">
+        Frequently Asked Questions
+      </h2>
+
+      <svg
+        class="section-flourish"
+        viewBox="0 0 140 24"
+        fill="none"
+        aria-hidden="true"
+      >
+
+        <path
+          d="M2 14 C20 2 35 22 55 10 C72 0 90 20 108 9 C118 4 128 9 138 6"
+          stroke="#C9A961"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+
+      </svg>
+
+    </div>
+
+
+    <div
+      class="faq-list"
+      id="faqList"
+    ></div>
+
+  </section>
+
+
+  <!-- =======================================================
+       CONTACT
+       ======================================================= -->
+
+  <section
+    id="contact"
+    class="contact-section"
+  >
+
+    <div class="contact-grid">
+
+
+      <div class="contact-info">
+
+        <p class="section-eyebrow">
+          GET IN TOUCH
+        </p>
+
+        <h2 class="section-title">
+          Contact Us
+        </h2>
+
+        <svg
+          class="section-flourish"
+          viewBox="0 0 140 24"
+          fill="none"
+          aria-hidden="true"
+        >
+
+          <path
+            d="M2 14 C20 2 35 22 55 10 C72 0 90 20 108 9 C118 4 128 9 138 6"
+            stroke="#C9A961"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+
+        </svg>
+
+
+        <ul class="contact-list">
+
+          <li>
+            <strong>
+              Phone / WhatsApp:
+            </strong>
+
+            <a href="tel:+919391119262">
+              +91 93911 19262
+            </a>
+          </li>
+
+
+          <li>
+            <strong>
+              Email:
+            </strong>
+
+            <a href="mailto:aliyasoughat.k@gmail.com">
+              aliyasoughat.k@gmail.com
+            </a>
+          </li>
+
+
+          <li>
+            <strong>
+              Studio Location:
+            </strong>
+
+            Hindupur, Andhra Pradesh, India
+          </li>
+
+
+          <li>
+            <strong>
+              Instagram:
+            </strong>
+
+            <a
+              href="https://www.instagram.com/husna_artistry"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              @husna_artistry
+            </a>
+          </li>
+
+        </ul>
+
+
+        <p class="contact-note">
+          Shipping is available all over India.
+          We accept online payments only (no COD).
+          For custom, pre-booked artwork, 50% advance
+          payment confirms your order.
+        </p>
+
+      </div>
+
+
+      <!-- CONTACT FORM -->
+
+      <form
+        id="contactForm"
+        class="contact-form"
+      >
+
+        <label>
+          Name
+
+          <input
+            type="text"
+            name="name"
+            required
+            placeholder="Your full name"
+          >
+        </label>
+
+
+        <label>
+          Email
+
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="you@example.com"
+          >
+        </label>
+
+
+        <label>
+          Message
+
+          <textarea
+            name="message"
+            rows="5"
+            required
+            placeholder="Tell us about the piece you have in mind..."
+          ></textarea>
+        </label>
+
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+        >
+          Send Message
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer class="footer">
+
+  <div class="footer-inner">
+
+
+    <!-- FOOTER BRAND -->
+
+    <div class="footer-brand">
+
+      <div class="footer-brand-mark">
+        HA
+      </div>
+
+      <p class="footer-brand-name">
+        Husna Artistry
+      </p>
+
+      <p class="footer-tag">
+        Handwritten Arabic calligraphy,
+        framed with care.
+      </p>
+
+    </div>
+
+
+    <!-- EXPLORE -->
+
+    <div class="footer-col">
+
+      <h4>
+        Explore
+      </h4>
+
+      <a href="#home">
+        Home
+      </a>
+
+      <a href="#products">
+        Collection
+      </a>
+
+      <a href="#about">
+        About
+      </a>
+
+      <a href="#faq">
+        FAQ
+      </a>
+
+      <a href="#contact">
+        Contact
+      </a>
+
+    </div>
+
+
+    <!-- POLICIES -->
+
+    <div class="footer-col">
+
+      <h4>
+        Policies
+      </h4>
+
+      <a
+        href="#"
+        data-policy="returns"
+      >
+        Return Policy
+      </a>
+
+      <a
+        href="#"
+        data-policy="shipping"
+      >
+        Shipping Policy
+      </a>
+
+      <a
+        href="#"
+        data-policy="privacy"
+      >
+        Privacy Policy
+      </a>
+
+      <a
+        href="#"
+        data-policy="terms"
+      >
+        Terms &amp; Conditions
+      </a>
+
+    </div>
+
+
+    <!-- CONTACT -->
+
+    <div class="footer-col">
+
+      <h4>
+        Contact
+      </h4>
+
+      <a href="tel:+919391119262">
+        +91 93911 19262
+      </a>
+
+      <a href="mailto:aliyasoughat.k@gmail.com">
+        aliyasoughat.k@gmail.com
+      </a>
+
+      <a
+        href="https://www.instagram.com/husna_artistry"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Instagram
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    <p>
+      &copy;
+      <span id="footerYear"></span>
+      Husna Artistry.
+      All artwork is original and protected by copyright.
+    </p>
+
+  </div>
+
+</footer>
+
+
+<!-- =========================================================
+     PRODUCT DETAILS MODAL
+     ========================================================= -->
+
+<div
+  id="productModal"
+  class="modal-overlay"
+  aria-hidden="true"
+>
+
+  <div
+    class="modal product-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="productModalTitle"
+  >
+
+    <button
+      class="modal-close"
+      type="button"
+      data-close="productModal"
+      aria-label="Close product details"
+    >
+      &times;
+    </button>
+
+    <div
+      class="product-modal-body"
+      id="productModalBody"
+    ></div>
+
+    <div
+      class="pm-reviews"
+      id="pmReviews"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     CART DRAWER
+     ========================================================= -->
+
+<div
+  id="cartOverlay"
+  class="drawer-overlay"
+  aria-hidden="true"
+></div>
+
+
+<aside
+  id="cartDrawer"
+  class="drawer"
+  aria-hidden="true"
+>
+
+  <div class="drawer-head">
+
+    <div>
+      <span class="drawer-kicker">
+        CART
+      </span>
+
+      <h3>
+        Your selection
+      </h3>
+    </div>
+
+    <button
+      class="icon-btn"
+      type="button"
+      data-close-drawer="cartDrawer"
+      aria-label="Close cart"
+    >
+      &times;
+    </button>
+
+  </div>
+
+
+  <div
+    id="cartItems"
+    class="drawer-items"
+  ></div>
+
+
+  <div class="drawer-footer">
+
+    <div class="drawer-subtotal">
+
+      <span>
+        Subtotal
+      </span>
+
+      <strong id="cartSubtotal">
+        ₹0
+      </strong>
+
+    </div>
+
+
+    <p class="drawer-note">
+      Free shipping all over India.
+      Online payment only.
+    </p>
+
+
+    <button
+      id="checkoutBtn"
+      class="btn btn-primary btn-block"
+      type="button"
+    >
+      Proceed to Checkout
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- =========================================================
+     WISHLIST DRAWER
+     ========================================================= -->
+
+<div
+  id="wishlistOverlay"
+  class="drawer-overlay"
+  aria-hidden="true"
+></div>
+
+
+<aside
+  id="wishlistDrawer"
+  class="drawer"
+  aria-hidden="true"
+>
+
+  <div class="drawer-head">
+
+    <div>
+      <span class="drawer-kicker">
+        SAVED
+      </span>
+
+      <h3>
+        Your Wishlist
+      </h3>
+    </div>
+
+    <button
+      class="icon-btn"
+      type="button"
+      data-close-drawer="wishlistDrawer"
+      aria-label="Close wishlist"
+    >
+      &times;
+    </button>
+
+  </div>
+
+
+  <div
+    id="wishlistItems"
+    class="drawer-items"
+  ></div>
+
+</aside>
+
+
+<!-- =========================================================
+     LOGIN MODAL
+     ========================================================= -->
+
+<div
+  id="loginModal"
+  class="modal-overlay"
+  aria-hidden="true"
+>
+
+  <div
+    class="modal auth-modal"
+    role="dialog"
+    aria-modal="true"
+  >
+
+    <button
+      class="modal-close"
+      type="button"
+      data-close="loginModal"
+      aria-label="Close login"
+    >
+      &times;
+    </button>
+
+
+    <h3 class="modal-title">
+      Welcome Back
+    </h3>
+
+
+    <p class="modal-sub">
+      Log in to your Husna Artistry account.
+    </p>
+
+
+    <form
+      id="loginForm"
+      class="auth-form"
+    >
+
+      <label>
+        Email
+
+        <input
+          type="email"
+          name="email"
+          required
+          autocomplete="username"
+        >
+      </label>
+
+
+      <label>
+        Password
+
+        <input
+          type="password"
+          name="password"
+          required
+          autocomplete="current-password"
+        >
+      </label>
+
+      <p class="forgot-password-link">
+      <a href="#" id="forgotPasswordLink">Forgot password?</a>
+        </p>
+
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-block"
+      >
+        Log In
+      </button>
+
+    </form>
+
+
+    <p class="auth-switch">
+
+      New here?
+
+      <a
+        href="#"
+        data-switch="registerModal"
+      >
+        Create an account
+      </a>
+
+    </p>
+
+  </div>
+
+</div>
+
+<!-- =========================================================
+     FORGOT PASSWORD MODAL
+     ========================================================= -->
+
+<div
+  id="forgotPasswordModal"
+  class="modal-overlay"
+  aria-hidden="true"
+>
+  <div
+    class="modal auth-modal"
+    role="dialog"
+    aria-modal="true"
+  >
+
+    <button
+      class="modal-close"
+      type="button"
+      data-close="forgotPasswordModal"
+      aria-label="Close forgot password"
+    >
+      &times;
+    </button>
+
+
+    <!-- STEP 1: EMAIL -->
+
+    <div id="forgotPasswordEmailStep">
+
+      <h3 class="modal-title">
+        Forgot Password?
+      </h3>
+
+      <p class="modal-sub">
+        Enter your email address and we'll send you a verification code.
+      </p>
+
+      <form
+        id="forgotPasswordEmailForm"
+        class="auth-form"
+      >
+
+        <label>
+          Email
+
+          <input
+            type="email"
+            id="forgotPasswordEmail"
+            name="email"
+            required
+            autocomplete="email"
+          >
+        </label>
+
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          id="sendResetCodeBtn"
+        >
+          Send Verification Code
+        </button>
+
+      </form>
+
+      <p class="auth-switch">
+        Remember your password?
+
+        <a
+          href="#"
+          id="backToLoginFromForgot"
+        >
+          Back to Login
+        </a>
+      </p>
+
+    </div>
+
+
+    <!-- STEP 2: VERIFICATION CODE -->
+
+    <div
+      id="forgotPasswordCodeStep"
+      style="display: none;"
+    >
+
+      <h3 class="modal-title">
+        Verify Your Email
+      </h3>
+
+      <p class="modal-sub">
+        Enter the 6-digit verification code sent to your email.
+      </p>
+
+      <form
+        id="verifyResetCodeForm"
+        class="auth-form"
+      >
+
+        <label>
+          Verification Code
+
+          <input
+            type="text"
+            id="resetCode"
+            name="code"
+            inputmode="numeric"
+            pattern="[0-9]{6}"
+            maxlength="6"
+            minlength="6"
+            autocomplete="one-time-code"
+            required
+          >
+        </label>
+
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          id="verifyResetCodeBtn"
+        >
+          Verify Code
+        </button>
+
+      </form>
+
+      <p class="auth-switch">
+        Didn't receive the code?
+
+        <a
+          href="#"
+          id="resendResetCode"
+        >
+          Resend code
+        </a>
+      </p>
+
+    </div>
+
+
+    <!-- STEP 3: NEW PASSWORD -->
+
+    <div
+      id="forgotPasswordResetStep"
+      style="display: none;"
+    >
+
+      <h3 class="modal-title">
+        Create New Password
+      </h3>
+
+      <p class="modal-sub">
+        Choose a strong new password for your account.
+      </p>
+
+      <form
+        id="resetPasswordForm"
+        class="auth-form"
+      >
+
+        <label>
+          New Password
+
+          <input
+            type="password"
+            id="newResetPassword"
+            name="newPassword"
+            required
+            minlength="8"
+            maxlength="128"
+            autocomplete="new-password"
+          >
+        </label>
+
+        <label>
+          Confirm New Password
+
+          <input
+            type="password"
+            id="confirmResetPassword"
+            name="confirmPassword"
+            required
+            minlength="8"
+            maxlength="128"
+            autocomplete="new-password"
+          >
+        </label>
+
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          id="resetPasswordBtn"
+        >
+          Reset Password
+        </button>
+
+      </form>
+
+      <p class="auth-switch">
+        Remembered your password?
+
+        <a
+          href="#"
+          id="backToLoginFromReset"
+        >
+          Back to Login
+        </a>
+      </p>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!-- =========================================================
+     REGISTER MODAL
+     ========================================================= -->
+
+<div
+  id="registerModal"
+  class="modal-overlay"
+  aria-hidden="true"
+>
+
+  <div
+    class="modal auth-modal"
+    role="dialog"
+    aria-modal="true"
+  >
+
+    <button
+      class="modal-close"
+      type="button"
+      data-close="registerModal"
+      aria-label="Close registration"
+    >
+      &times;
+    </button>
+
+
+    <h3 class="modal-title">
+      Create Account
+    </h3>
+
+
+    <p class="modal-sub">
+      Join Husna Artistry to track your orders
+      and wishlist.
+    </p>
+
+
+    <form
+      id="registerForm"
+      class="auth-form"
+    >
+
+      <label>
+        Full Name
+
+        <input
+          type="text"
+          name="name"
+          required
+          autocomplete="name"
+        >
+      </label>
+
+
+      <label>
+        Email
+
+        <input
+          type="email"
+          name="email"
+          required
+          autocomplete="email"
+        >
+      </label>
+
+
+      <label>
+        Password
+
+        <input
+          type="password"
+          name="password"
+          required
+          minlength="8"
+          maxlength="128"
+          autocomplete="new-password"
+        >
+      </label>
+
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-block"
+      >
+        Register
+      </button>
+
+    </form>
+
+
+    <p class="auth-switch">
+
+      Already have an account?
+
+      <a
+        href="#"
+        data-switch="loginModal"
+      >
+        Log in
+      </a>
+
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     ACCOUNT MODAL
+     ========================================================= -->
+
+<div
+  id="accountModal"
+  class="modal-overlay"
+  aria-hidden="true"
+>
+
+  <div
+    class="modal account-modal"
+    role="dialog"
+    aria-modal="true"
+  >
+
+    <button
+      class="modal-close"
+      type="button"
+      data-close="accountModal"
+      aria-label="Close account"
+    >
+      &times;
+    </button>
+
+
+    <h3 class="modal-title">
+      My Account
+    </h3>
+
+
+    <div class="account-tabs">
+
+      <button
+        class="account-tab active"
+        type="button"
+        data-tab="profile"
+      >
+        Profile
+      </button>
+
+      <button
+        class="account-tab"
+        type="button"
+        data-tab="orders"
+      >
+        Orders
+      </button>
+
+      <button
+        class="account-tab"
+        type="button"
+        data-tab="addresses"
+      >
+        Addresses
+      </button>
+
+    </div>
+
+
+    <div
+      id="accountBody"
+      class="account-body"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     POLICY MODAL
+     ========================================================= -->
+
+<div
+  id="policyModal"
+  class="modal-overlay"
+  aria-hidden="true"
+>
+
+  <div
+    class="modal policy-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="policyTitle"
+  >
+
+    <button
+      class="modal-close"
+      type="button"
+      data-close="policyModal"
+      aria-label="Close policy"
+    >
+      &times;
+    </button>
+
+
+    <h3
+      class="modal-title"
+      id="policyTitle"
+    ></h3>
+
+
+    <div
+      class="policy-body"
+      id="policyBody"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     SCRIPTS
+     IMPORTANT:
+     api.js must load BEFORE script.js
+     ========================================================= -->
+
+<script src="api.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

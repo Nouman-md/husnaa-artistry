@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login | Husna Artistry</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div id="toastContainer" class="toast-container"></div>
+<div class="admin-login-page">
+  <div class="admin-login-card">
+    <img src="../assets/husna-logo.jpg" alt="Husna Artistry">
+    <h1>Admin Portal</h1>
+    <p>Sign in to manage your products, orders, and customers.</p>
+    <form id="adminLoginForm" class="admin-form">
+      <label>Admin Name
+        <input type="text" name="name" required autocomplete="username">
+      </label>
+      <label>Password
+        <input type="password" name="password" required autocomplete="current-password">
+      </label>
+      <button type="submit" class="btn btn-primary btn-block">Log In</button>
+    </form>
+  </div>
+</div>
+<script src="admin-api.js"></script>
+<script src="login.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="../motion.js"></script>
+</body>
+</html>
