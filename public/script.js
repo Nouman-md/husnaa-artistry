@@ -8,7 +8,6 @@
    CONFIG
    ========================================================= */
 
-const WHATSAPP_NUMBER = "919391119262";
 const BUSINESS_EMAIL = "aliyasoughat.k@gmail.com";
 
 /* =========================================================
@@ -3203,7 +3202,84 @@ if (loginForm) {
         }
     );
 }
+/* =========================================================
+   GOOGLE SIGN-IN
+   ========================================================= */
 
+function initializeGoogleSignIn() {
+  if (
+    !window.google ||
+    !google.accounts ||
+    !google.accounts.id
+  ) {
+    console.error("Google Identity Services has not loaded.");
+    return;
+  }
+
+  const googleButton = document.getElementById(
+    "googleSignInButton"
+  );
+
+  if (!googleButton) {
+    console.error("Google sign-in button container not found.");
+    return;
+  }
+
+  google.accounts.id.initialize({
+    client_id: "853670461927-3728uqeq8j2p59djn741gbcs3g1j2ef2.apps.googleusercontent.com",
+    callback: handleGoogleLogin,
+  });
+
+  google.accounts.id.renderButton(
+    googleButton,
+    {
+      theme: "outline",
+      size: "large",
+      text: "continue_with",
+      shape: "rectangular",
+      width: 300,
+    }
+  );
+}
+
+async function handleGoogleLogin(response) {
+  try {
+    if (!response || !response.credential) {
+      throw new Error("Google sign-in failed. Please try again.");
+    }
+
+    const result = await apiFetch("/auth/google", {
+      method: "POST",
+      body: JSON.stringify({
+        credential: response.credential,
+      }),
+    });
+
+    if (!result || !result.token) {
+      throw new Error(
+        result?.message || "Google sign-in failed."
+      );
+    }
+
+    setToken(result.token);
+
+    alert("Google sign-in successful!");
+
+    window.location.reload();
+
+  } catch (error) {
+    console.error("Google login error:", error);
+
+    alert(
+      error.message ||
+      "Google sign-in failed. Please try again."
+    );
+  }
+}
+
+window.addEventListener("load", () => {
+  initializeGoogleSignIn();
+});
 /* =========================================================
    FORGOT PASSWORD
    ========================================================= */
@@ -3763,13 +3839,419 @@ if (backToLoginFromReset) {
   );
 
 }
+/* =========================================================
+   PREMIUM OTP INPUT
+   Reusable for registration + password reset
+   ========================================================= */
+
+function initPremiumOtp(groupId, hiddenInputId) {
+
+    const group = document.getElementById(groupId);
+    const hiddenInput =
+        document.getElementById(hiddenInputId);
+
+    if (!group || !hiddenInput) return;
+
+    const inputs =
+        Array.from(
+            group.querySelectorAll("input")
+        );
+
+    if (inputs.length !== 6) return;
+
+
+    /* -----------------------------------------------------
+       Update hidden value
+       ----------------------------------------------------- */
+
+    function updateHiddenValue() {
+
+        hiddenInput.value =
+            inputs
+                .map(input => input.value)
+                .join("");
+    }
+
+
+    /* -----------------------------------------------------
+       Clear OTP
+       ----------------------------------------------------- */
+
+    function clearOtp() {
+
+        inputs.forEach(input => {
+            input.value = "";
+            input.classList.remove("otp-filled");
+            input.classList.remove("otp-error");
+        });
+
+        hiddenInput.value = "";
+
+        inputs[0].focus();
+    }
+
+
+    /* -----------------------------------------------------
+       Set error state
+       ----------------------------------------------------- */
+
+    function setOtpError() {
+
+        inputs.forEach(input => {
+            input.classList.add("otp-error");
+        });
+    }
+
+
+    /* -----------------------------------------------------
+       Clear error state
+       ----------------------------------------------------- */
+
+    function clearOtpError() {
+
+        inputs.forEach(input => {
+            input.classList.remove("otp-error");
+        });
+    }
+
+
+    /* -----------------------------------------------------
+       Input handling
+       ----------------------------------------------------- */
+
+    inputs.forEach((input, index) => {
+
+        input.addEventListener(
+            "input",
+            event => {
+
+                clearOtpError();
+
+                /*
+                 * Keep numbers only.
+                 */
+
+                let value =
+                    input.value.replace(
+                        /\D/g,
+                        ""
+                    );
+
+                /*
+                 * If more than one digit somehow
+                 * enters this box, use the last digit.
+                 */
+
+                if (value.length > 1) {
+                    value =
+                        value.charAt(
+                            value.length - 1
+                        );
+                }
+
+                input.value = value;
+
+
+                if (value) {
+
+                    input.classList.add(
+                        "otp-filled"
+                    );
+
+                    /*
+                     * Move automatically to
+                     * the next box.
+                     */
+
+                    if (
+                        index <
+                        inputs.length - 1
+                    ) {
+
+                        inputs[index + 1].focus();
+
+                    }
+                } else {
+
+                    input.classList.remove(
+                        "otp-filled"
+                    );
+                }
+
+
+                updateHiddenValue();
+
+
+                /*
+                 * Automatically focus the
+                 * final box when all digits
+                 * are entered.
+                 */
+
+                if (
+                    inputs.every(
+                        item => item.value
+                    )
+                ) {
+
+                    updateHiddenValue();
+                }
+            }
+        );
+
+
+        /* -------------------------------------------------
+           Keyboard handling
+           ------------------------------------------------- */
+
+        input.addEventListener(
+            "keydown",
+            event => {
+
+                clearOtpError();
+
+
+                /*
+                 * Backspace:
+                 *
+                 * If current box is empty,
+                 * move to previous box.
+                 */
+
+                if (
+                    event.key ===
+                    "Backspace"
+                ) {
+
+                    if (
+                        !input.value &&
+                        index > 0
+                    ) {
+
+                        inputs[
+                            index - 1
+                        ].focus();
+
+                        inputs[
+                            index - 1
+                        ].value = "";
+
+                        inputs[
+                            index - 1
+                        ].classList.remove(
+                            "otp-filled"
+                        );
+
+                        updateHiddenValue();
+                    }
+                }
+
+
+                /*
+                 * Arrow navigation.
+                 */
+
+                if (
+                    event.key ===
+                    "ArrowLeft" &&
+                    index > 0
+                ) {
+
+                    event.preventDefault();
+
+                    inputs[
+                        index - 1
+                    ].focus();
+                }
+
+
+                if (
+                    event.key ===
+                    "ArrowRight" &&
+                    index <
+                    inputs.length - 1
+                ) {
+
+                    event.preventDefault();
+
+                    inputs[
+                        index + 1
+                    ].focus();
+                }
+            }
+        );
+
+
+        /* -------------------------------------------------
+           Paste support
+           ------------------------------------------------- */
+
+        input.addEventListener(
+            "paste",
+            event => {
+
+                event.preventDefault();
+
+                const pasted =
+                    (
+                        event.clipboardData ||
+                        window.clipboardData
+                    )
+                        .getData("text")
+                        .replace(/\D/g, "")
+                        .slice(0, 6);
+
+
+                if (!pasted) return;
+
+
+                inputs.forEach(
+                    (box, boxIndex) => {
+
+                        box.value =
+                            pasted[boxIndex] ||
+                            "";
+
+                        if (box.value) {
+
+                            box.classList.add(
+                                "otp-filled"
+                            );
+
+                        } else {
+
+                            box.classList.remove(
+                                "otp-filled"
+                            );
+                        }
+                    }
+                );
+
+
+                updateHiddenValue();
+
+
+                /*
+                 * Focus the next empty box,
+                 * otherwise remain on the last.
+                 */
+
+                const nextEmpty =
+                    inputs.findIndex(
+                        box => !box.value
+                    );
+
+
+                if (nextEmpty !== -1) {
+
+                    inputs[nextEmpty].focus();
+
+                } else {
+
+                    inputs[
+                        inputs.length - 1
+                    ].focus();
+                }
+            }
+        );
+
+
+        /* -------------------------------------------------
+           Focus state
+           ------------------------------------------------- */
+
+        input.addEventListener(
+            "focus",
+            () => {
+
+                clearOtpError();
+
+                input.parentElement
+                    ?.classList
+                    .add("otp-active");
+            }
+        );
+
+
+        input.addEventListener(
+            "blur",
+            () => {
+
+                input.parentElement
+                    ?.classList
+                    .remove("otp-active");
+            }
+        );
+    });
+
+
+    /*
+     * Expose useful controls to the element.
+     * This allows resend/error logic to control
+     * the component without duplicating code.
+     */
+
+    group.clearOtp = clearOtp;
+    group.setOtpError = setOtpError;
+    group.clearOtpError = clearOtpError;
+    group.updateOtpValue =
+        updateHiddenValue;
+}
+
 
 /* =========================================================
-   REGISTER
+   INITIALIZE OTP COMPONENTS
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        initPremiumOtp(
+            "registerOtpGroup",
+            "registerVerificationCode"
+        );
+
+        initPremiumOtp(
+            "resetOtpGroup",
+            "resetCode"
+        );
+    }
+);
+/* =========================================================
+   REGISTER — 3 STEP EMAIL VERIFICATION FLOW
+   ========================================================= */
+
+let registrationEmail = "";
+let registrationName = "";
+
+
+/* =========================================================
+   REGISTRATION ELEMENTS
    ========================================================= */
 
 const registerForm =
     $("registerForm");
+
+const registerStartStep =
+    $("registerStartStep");
+
+const registerVerificationStep =
+    $("registerVerificationStep");
+
+const registerPasswordStep =
+    $("registerPasswordStep");
+
+const registerVerificationForm =
+    $("registerVerificationForm");
+
+const completeRegistrationForm =
+    $("completeRegistrationForm");
+
+
+/* =========================================================
+   STEP 1 — NAME + EMAIL
+   ========================================================= */
 
 if (registerForm) {
 
@@ -3780,12 +4262,10 @@ if (registerForm) {
             event.preventDefault();
 
             if (!apiAvailable()) {
-
                 showToast(
                     "API is not connected.",
                     "error"
                 );
-
                 return;
             }
 
@@ -3793,58 +4273,500 @@ if (registerForm) {
                 registerForm.name.value.trim();
 
             const email =
-                registerForm.email.value.trim();
+                registerForm.email.value
+                    .trim()
+                    .toLowerCase();
 
-            const password =
-                registerForm.password.value;
+            if (!name) {
+                showToast(
+                    "Please enter your name.",
+                    "error"
+                );
+                return;
+            }
+
+            if (!email) {
+                showToast(
+                    "Please enter your email.",
+                    "error"
+                );
+                return;
+            }
+
+            const button =
+                registerForm.querySelector(
+                    'button[type="submit"]'
+                );
 
             try {
+
+                if (button) {
+                    button.disabled = true;
+                    button.textContent =
+                        "Sending Code...";
+                }
 
                 const result =
                     await apiFetch(
                         "/auth/register",
                         {
-                            method:
-                                "POST",
+                            method: "POST",
 
                             body:
                                 JSON.stringify({
                                     name,
-                                    email,
+                                    email
+                                })
+                        }
+                    );
+
+
+                /*
+                 * Save registration information
+                 * locally in memory only.
+                 */
+
+                registrationName =
+                    name;
+
+                registrationEmail =
+                    result.email || email;
+
+
+                /*
+                 * Show verification step.
+                 */
+
+                showRegistrationVerificationStep();
+
+
+                showToast(
+                    "Verification code sent to your email."
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Registration error:",
+                    error
+                );
+
+                showToast(
+                    error.message ||
+                    "Registration failed. Please try again.",
+                    "error"
+                );
+
+            } finally {
+
+                if (button) {
+                    button.disabled = false;
+                    button.textContent =
+                        "Continue";
+                }
+            }
+        }
+    );
+}
+
+
+/* =========================================================
+   SHOW STEP 2 — VERIFY EMAIL
+   ========================================================= */
+
+function showRegistrationVerificationStep() {
+
+    if (!registerStartStep ||
+        !registerVerificationStep) {
+        return;
+    }
+
+    registerStartStep.style.display =
+        "none";
+
+    registerVerificationStep.style.display =
+        "";
+
+
+    const emailDisplay =
+        $("registerVerificationEmail");
+
+    if (emailDisplay) {
+        emailDisplay.textContent =
+            registrationEmail;
+    }
+
+
+    const codeInput =
+        $("registerVerificationCode");
+
+    if (codeInput) {
+
+        codeInput.value = "";
+
+        setTimeout(() => {
+            codeInput.focus();
+        }, 100);
+    }
+}
+
+
+/* =========================================================
+   STEP 2 — VERIFY OTP
+   ========================================================= */
+
+if (registerVerificationForm) {
+
+    registerVerificationForm.addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+            const codeInput =
+                $("registerVerificationCode");
+
+            const button =
+                $("verifyRegistrationBtn");
+
+            if (!codeInput) return;
+
+            const code =
+                codeInput.value
+                    .trim();
+
+            if (!/^\d{6}$/.test(code)) {
+
+                showToast(
+                    "Please enter the 6-digit verification code.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (!registrationEmail) {
+
+                showToast(
+                    "Registration session expired. Please start again.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            try {
+
+                if (button) {
+                    button.disabled = true;
+                    button.textContent =
+                        "Verifying...";
+                }
+
+
+                const result =
+                    await apiFetch(
+                        "/auth/verify-email",
+                        {
+                            method: "POST",
+
+                            body:
+                                JSON.stringify({
+                                    email:
+                                        registrationEmail,
+                                    code
+                                })
+                        }
+                    );
+
+
+                /*
+                 * Email is now verified.
+                 *
+                 * We still DO NOT create the
+                 * User account.
+                 */
+
+                showRegistrationPasswordStep(
+                    result
+                );
+
+
+                showToast(
+                    "Email verified successfully."
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Email verification error:",
+                    error
+                );
+
+                showToast(
+                    error.message ||
+                    "Invalid or expired verification code.",
+                    "error"
+                );
+
+            } finally {
+
+                if (button) {
+                    button.disabled = false;
+                    button.textContent =
+                        "Verify Email";
+                }
+            }
+        }
+    );
+}
+
+
+/* =========================================================
+   SHOW STEP 3 — CREATE PASSWORD
+   ========================================================= */
+
+function showRegistrationPasswordStep(
+    result
+) {
+
+    if (!registerVerificationStep ||
+        !registerPasswordStep) {
+        return;
+    }
+
+
+    registerVerificationStep.style.display =
+        "none";
+
+    registerPasswordStep.style.display =
+        "";
+
+
+    const verifiedEmail =
+        $("verifiedRegistrationEmail");
+
+    if (verifiedEmail) {
+
+        verifiedEmail.textContent =
+            result.email ||
+            registrationEmail;
+    }
+
+
+    const password =
+        $("registrationPassword");
+
+    if (password) {
+
+        password.value = "";
+
+        setTimeout(() => {
+            password.focus();
+        }, 100);
+    }
+}
+
+
+/* =========================================================
+   STEP 3 — CREATE PASSWORD + ACCOUNT
+   ========================================================= */
+
+if (completeRegistrationForm) {
+
+    completeRegistrationForm.addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+            const passwordInput =
+                $("registrationPassword");
+
+            const confirmInput =
+                $("registrationConfirmPassword");
+
+            const button =
+                $("completeRegistrationBtn");
+
+            if (!passwordInput ||
+                !confirmInput) {
+                return;
+            }
+
+
+            const password =
+                passwordInput.value;
+
+            const confirmPassword =
+                confirmInput.value;
+
+
+            /* ---------- Password match ---------- */
+
+            if (password !== confirmPassword) {
+
+                showToast(
+                    "Passwords do not match.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            /* ---------- Password requirements ---------- */
+
+            if (password.length < 8) {
+
+                showToast(
+                    "Password must contain at least 8 characters.",
+                    "error"
+                );
+
+                return;
+            }
+
+            if (password.length > 128) {
+
+                showToast(
+                    "Password cannot exceed 128 characters.",
+                    "error"
+                );
+
+                return;
+            }
+
+            if (!/[A-Z]/.test(password)) {
+
+                showToast(
+                    "Password must contain an uppercase letter.",
+                    "error"
+                );
+
+                return;
+            }
+
+            if (!/[a-z]/.test(password)) {
+
+                showToast(
+                    "Password must contain a lowercase letter.",
+                    "error"
+                );
+
+                return;
+            }
+
+            if (!/[0-9]/.test(password)) {
+
+                showToast(
+                    "Password must contain a number.",
+                    "error"
+                );
+
+                return;
+            }
+
+            if (!/[^A-Za-z0-9]/.test(password)) {
+
+                showToast(
+                    "Password must contain a special character.",
+                    "error"
+                );
+
+                return;
+            }
+
+            if (/\s/.test(password)) {
+
+                showToast(
+                    "Password cannot contain spaces.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (!registrationEmail) {
+
+                showToast(
+                    "Registration session expired. Please start again.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            try {
+
+                if (button) {
+                    button.disabled = true;
+                    button.textContent =
+                        "Creating Account...";
+                }
+
+
+                const result =
+                    await apiFetch(
+                        "/auth/complete-registration",
+                        {
+                            method: "POST",
+
+                            body:
+                                JSON.stringify({
+                                    email:
+                                        registrationEmail,
                                     password
                                 })
                         }
                     );
 
-                if (
-                    typeof setToken ===
-                    "function"
-                ) {
+
+                /* ---------- Account created ---------- */
+
+                if (result.token) {
 
                     setToken(
                         result.token
                     );
                 }
 
+
                 currentUser =
-                    result.user ||
-                    null;
+                    result.user || null;
+
+
+                /* ---------- Reset registration state ---------- */
+
+                registrationEmail = "";
+                registrationName = "";
+
 
                 registerForm.reset();
+                completeRegistrationForm.reset();
+
+
+                resetRegistrationSteps();
+
 
                 closeModal(
                     "registerModal"
                 );
 
+
                 showToast(
                     `Welcome${
-                        currentUser &&
-                        currentUser.name
+                        currentUser?.name
                             ? ", " +
                               currentUser.name
                             : ""
                     }! Your account is ready.`
                 );
+
 
                 await syncCartAfterLogin();
 
@@ -3852,16 +4774,169 @@ if (registerForm) {
 
             } catch (error) {
 
+                console.error(
+                    "Complete registration error:",
+                    error
+                );
+
                 showToast(
                     error.message ||
-                    "Registration failed.",
+                    "Unable to create your account. Please try again.",
                     "error"
                 );
+
+            } finally {
+
+                if (button) {
+                    button.disabled = false;
+                    button.textContent =
+                        "Create Account";
+                }
             }
         }
     );
 }
 
+
+/* =========================================================
+   BACK TO REGISTRATION
+   ========================================================= */
+
+$("backToRegisterStart")
+    ?.addEventListener(
+        "click",
+        event => {
+
+            event.preventDefault();
+
+            resetRegistrationSteps();
+
+            if (registerForm) {
+                registerForm.reset();
+            }
+
+            registrationEmail = "";
+            registrationName = "";
+        }
+    );
+
+
+/* =========================================================
+   RESEND VERIFICATION CODE
+   ========================================================= */
+
+$("resendRegistrationCode")
+    ?.addEventListener(
+        "click",
+        async event => {
+
+            event.preventDefault();
+
+            if (!registrationEmail) {
+
+                showToast(
+                    "Registration session expired. Please start again.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            const link =
+                $("resendRegistrationCode");
+
+            try {
+
+                if (link) {
+                    link.style.pointerEvents =
+                        "none";
+
+                    link.textContent =
+                        "Sending...";
+                }
+
+
+                await apiFetch(
+                    "/auth/resend-verification",
+                    {
+                        method: "POST",
+
+                        body:
+                            JSON.stringify({
+                                email:
+                                    registrationEmail
+                            })
+                    }
+                );
+
+
+                const codeInput =
+                    $("registerVerificationCode");
+
+                if (codeInput) {
+                    codeInput.value = "";
+                    codeInput.focus();
+                }
+
+
+                showToast(
+                    "A new verification code has been sent."
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Resend verification error:",
+                    error
+                );
+
+                showToast(
+                    error.message ||
+                    "Could not resend the verification code.",
+                    "error"
+                );
+
+            } finally {
+
+                if (link) {
+
+                    setTimeout(() => {
+
+                        link.style.pointerEvents =
+                            "";
+
+                        link.textContent =
+                            "Resend Code";
+
+                    }, 3000);
+                }
+            }
+        }
+    );
+
+
+/* =========================================================
+   RESET REGISTRATION FLOW
+   ========================================================= */
+
+function resetRegistrationSteps() {
+
+    if (registerStartStep) {
+        registerStartStep.style.display =
+            "";
+    }
+
+    if (registerVerificationStep) {
+        registerVerificationStep.style.display =
+            "none";
+    }
+
+    if (registerPasswordStep) {
+        registerPasswordStep.style.display =
+            "none";
+    }
+}
 /* =========================================================
    ACCOUNT TABS
    ========================================================= */
@@ -4672,10 +5747,10 @@ const FAQ_DATA = [
         a: "No. All artwork is protected by copyright and may not be reproduced, distributed, or used commercially without permission."
     },
 
-    {
-        q: "How can I contact you?",
-        a: "You can reach Husna Artistry through the Contact section, WhatsApp, phone, or email."
-    }
+   {
+    q: "How can I contact you?",
+    a: "You can reach Husna Artistry through email or Instagram. For custom artwork, Instagram is a great way to share your ideas and references."
+}
 ];
 
 function renderFaq() {
@@ -4777,7 +5852,6 @@ function renderFaq() {
 /* =========================================================
    CONTACT
    ========================================================= */
-
 const contactForm =
     $("contactForm");
 
@@ -4798,29 +5872,33 @@ if (contactForm) {
             const message =
                 contactForm.message.value.trim();
 
-            const whatsappMessage =
+            const subject =
+                `Husna Artistry enquiry from ${name}`;
+
+            const body =
                 `Hello Husna Artistry,
 
-I'm ${name} (${email}).
+Name: ${name}
+Email: ${email}
 
+Message:
 ${message}`;
 
-            window.open(
-                `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                    whatsappMessage
-                )}`,
-                "_blank"
-            );
+            window.location.href =
+                `mailto:${BUSINESS_EMAIL}?subject=${encodeURIComponent(
+                    subject
+                )}&body=${encodeURIComponent(
+                    body
+                )}`;
 
             contactForm.reset();
 
             showToast(
-                "Opening WhatsApp..."
+                "Opening your email app..."
             );
         }
     );
 }
-
 /* =========================================================
    POLICIES
    ========================================================= */
@@ -4832,14 +5910,15 @@ const POLICIES = {
         title:
             "Return Policy",
 
-        body:
-            `All sales at Husna Artistry are final.
+     body:
+
+    `All sales at Husna Artistry are final.
 
 We do not accept returns, exchanges, or refunds on products.
 
 If your order arrives damaged or you receive the wrong item due to our error, contact us within 48 hours of delivery with clear photographs.
 
-For questions, contact ${BUSINESS_EMAIL} or +91 93911 19262.`
+For questions, contact us at ${BUSINESS_EMAIL} or through our Instagram page @husna_artistry.`
     },
 
     shipping: {
@@ -4908,7 +5987,7 @@ Please handle Qur'anic and Islamic artwork respectfully.
 
 9. Contact
 Email: ${BUSINESS_EMAIL}
-Phone: +91 93911 19262`
+Instagram: @husna_artistry`
     }
 };
 

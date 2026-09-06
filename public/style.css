@@ -5170,3 +5170,2150 @@ height: 135px;
     flex-shrink: 0;
   }
 }
+
+/* =========================================================
+   GOOGLE SIGN-IN
+   ========================================================= */
+
+.google-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin: 22px 0 16px;
+  color: var(--muted);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.google-divider::before,
+.google-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.google-divider span {
+  flex: 0 0 auto;
+}
+
+/* Google button container */
+#googleSignInButton {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/*
+ * Google creates its own button inside this container.
+ * Keep it centered and prevent it from becoming wider
+ * than the login button.
+ */
+#googleSignInButton > div {
+  max-width: 100%;
+}
+
+/* Give the Google area the same visual breathing room
+   as the rest of the authentication form. */
+.auth-modal #googleSignInButton {
+  margin-bottom: 4px;
+}
+
+/* Mobile */
+@media (max-width: 620px) {
+  #googleSignInButton {
+    width: 100%;
+  }
+
+  .google-divider {
+    margin-top: 20px;
+    margin-bottom: 14px;
+  }
+}
+
+/* =========================================================
+   PREMIUM OTP INPUT
+   ========================================================= */
+
+.otp-input-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 22px 0 26px;
+  width: 100%;
+}
+
+.otp-input-group input {
+  width: 52px;
+  height: 58px;
+
+  padding: 0;
+
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+
+  background: #fff;
+
+  color: #1f1f1f;
+
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.otp-input-group input:hover {
+  border-color: rgba(0, 0, 0, 0.28);
+}
+
+.otp-input-group input:focus {
+  border-color: #111;
+
+  box-shadow:
+    0 0 0 3px rgba(0, 0, 0, 0.07);
+
+  transform: translateY(-1px);
+}
+
+.otp-input-group input.otp-filled {
+  border-color: #111;
+  background: #fafafa;
+}
+
+.otp-input-group input.otp-error {
+  border-color: #c62828;
+
+  box-shadow:
+    0 0 0 3px rgba(198, 40, 40, 0.08);
+}
+
+
+/* ---------------------------------------------------------
+   Mobile
+   --------------------------------------------------------- */
+
+@media (max-width: 480px) {
+
+  .otp-input-group {
+    gap: 6px;
+  }
+
+  .otp-input-group input {
+    width: 44px;
+    height: 52px;
+
+    font-size: 21px;
+
+    border-radius: 10px;
+  }
+}
+
+
+@media (max-width: 360px) {
+
+  .otp-input-group {
+    gap: 4px;
+  }
+
+  .otp-input-group input {
+    width: 40px;
+    height: 48px;
+
+    font-size: 19px;
+  }
+}
+
+/* =========================================================
+   HUSNA ARTISTRY — PREMIUM CONTACT REDESIGN
+   ========================================================= */
+
+.ha-contact {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 12% 70%,
+            rgba(204, 190, 145, 0.13),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 88% 18%,
+            rgba(210, 225, 213, 0.18),
+            transparent 30%
+        );
+}
+
+.ha-contact::before {
+    content: "";
+
+    position: absolute;
+
+    width: 390px;
+    height: 390px;
+
+    right: -185px;
+    top: -145px;
+
+    border: 1px solid rgba(201, 169, 97, 0.22);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.ha-contact::after {
+    content: "الله";
+
+    position: absolute;
+
+    right: -34px;
+    bottom: -80px;
+
+    font-family: Georgia, serif;
+
+    font-size: 170px;
+    line-height: 1;
+
+    color: rgba(22, 67, 57, 0.035);
+
+    transform: rotate(-8deg);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   MAIN CONTACT LAYOUT
+   ========================================================= */
+
+.ha-contact-shell {
+    position: relative;
+
+    z-index: 1;
+
+    width: min(1240px, calc(100% - 40px));
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(470px, 0.92fr);
+
+    gap: clamp(44px, 6vw, 78px);
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   LEFT SIDE
+   ========================================================= */
+
+.ha-contact-info {
+    min-width: 0;
+}
+
+.ha-contact-title {
+    color: #173f35;
+
+    margin-bottom: 10px;
+}
+
+.ha-contact-flourish {
+    margin-bottom: 24px;
+}
+
+.ha-contact-intro {
+    max-width: 650px;
+
+    margin: 0 0 30px;
+
+    color: #49625d;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(19px, 2vw, 25px);
+
+    line-height: 1.55;
+
+    font-style: italic;
+}
+
+
+/* =========================================================
+   CONTACT CARDS
+   ========================================================= */
+
+.ha-contact-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.ha-contact-card {
+    position: relative;
+
+    min-height: 154px;
+
+    padding:
+        22px
+        42px
+        20px
+        20px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 16px;
+
+    border:
+        1px solid
+        rgba(38, 66, 59, 0.10);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.74);
+
+    box-shadow:
+        0 14px 34px
+        rgba(36, 53, 47, 0.06);
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+
+    backdrop-filter: blur(8px);
+}
+
+a.ha-contact-card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(201, 169, 97, 0.45);
+
+    box-shadow:
+        0 18px 40px
+        rgba(36, 53, 47, 0.10);
+}
+
+.ha-contact-card-static {
+    cursor: default;
+}
+
+
+/* =========================================================
+   ICONS
+   ========================================================= */
+
+.ha-contact-icon {
+    flex: 0 0 58px;
+
+    width: 58px;
+    height: 58px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    color: #214b41;
+}
+
+.ha-contact-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.ha-contact-icon-email {
+    background: #dce9df;
+}
+
+.ha-contact-icon-instagram {
+    background: #f0dce8;
+}
+
+.ha-contact-icon-location {
+    background: #eee3c8;
+}
+
+.ha-contact-icon-shipping {
+    background: #dce9df;
+}
+
+
+/* =========================================================
+   CARD TEXT
+   ========================================================= */
+
+.ha-contact-card-copy {
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.ha-contact-card-copy strong {
+    margin-top: 1px;
+
+    color: #173f35;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 20px;
+
+    line-height: 1.2;
+}
+
+.ha-contact-card-copy small {
+    margin-top: 7px;
+
+    color: #4e625e;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+.ha-contact-card-copy b {
+    margin-top: 9px;
+
+    color: #b08a42;
+
+    font-size: 11px;
+
+    letter-spacing: 1.25px;
+
+    line-height: 1.35;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   CARD ARROW
+   ========================================================= */
+
+.ha-contact-arrow {
+    position: absolute;
+
+    top: 24px;
+    right: 18px;
+
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid
+        rgba(176, 138, 66, 0.55);
+
+    border-radius: 50%;
+
+    color: #a67e34;
+
+    font-size: 22px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.ha-contact-divider {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    margin:
+        30px
+        0
+        14px;
+}
+
+.ha-contact-divider span {
+    flex: 1;
+
+    height: 1px;
+
+    background:
+        rgba(176, 138, 66, 0.25);
+}
+
+.ha-contact-divider i {
+    color: #c5a054;
+
+    font-size: 18px;
+
+    font-style: normal;
+}
+
+.ha-contact-tagline {
+    margin: 0;
+
+    text-align: center;
+
+    color:
+        rgba(53, 72, 67, 0.55);
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 2.1px;
+}
+
+.ha-contact-tagline span {
+    padding: 0 7px;
+
+    color: #b08a42;
+}
+
+
+/* =========================================================
+   FORM PANEL
+   ========================================================= */
+
+.ha-contact-form-panel {
+    position: relative;
+
+    padding:
+        clamp(30px, 4vw, 46px);
+
+    border:
+        1px solid
+        rgba(38, 66, 59, 0.10);
+
+    border-radius: 30px;
+
+    background:
+        rgba(255, 255, 255, 0.86);
+
+    box-shadow:
+        0 24px 65px
+        rgba(28, 47, 42, 0.12);
+
+    backdrop-filter: blur(10px);
+}
+
+.ha-contact-form-panel::before {
+    content: "";
+
+    position: absolute;
+
+    width: 160px;
+    height: 160px;
+
+    top: -48px;
+    right: -28px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(239, 230, 205, 0.25);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   FORM HEADER
+   ========================================================= */
+
+.ha-contact-form-head {
+    position: relative;
+
+    z-index: 1;
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        flex-start;
+
+    gap: 20px;
+
+    margin-bottom: 27px;
+}
+
+.ha-contact-form-head h3 {
+    margin: 0;
+
+    color: #173f35;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(28px, 3vw, 38px);
+
+    line-height: 1.12;
+}
+
+.ha-contact-form-head p {
+    margin: 9px 0 0;
+
+    color: #60716d;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   HELP BADGE
+   ========================================================= */
+
+.ha-contact-help-badge {
+    flex: 0 0 auto;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding:
+        11px
+        15px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(246, 241, 226, 0.82);
+
+    color: #63716d;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+
+    line-height: 1.35;
+}
+
+.ha-contact-help-badge > span:first-child {
+    color: #b68a32;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   FORM INPUTS
+   ========================================================= */
+
+.ha-contact-form {
+    position: relative;
+
+    z-index: 1;
+}
+
+.ha-contact-form > label {
+    display: block;
+
+    margin-bottom: 17px;
+
+    color: #173f35;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.ha-input-wrap {
+    position: relative;
+
+    display: block;
+
+    margin-top: 9px;
+}
+
+.ha-input-wrap > svg {
+    position: absolute;
+
+    left: 17px;
+    top: 17px;
+
+    width: 23px;
+    height: 23px;
+
+    color: #2e5149;
+
+    pointer-events: none;
+}
+
+.ha-input-wrap input,
+.ha-input-wrap textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid
+        rgba(38, 66, 59, 0.16);
+
+    border-radius: 15px;
+
+    background: #fbfaf7;
+
+    color: #173f35;
+
+    outline: none;
+
+    font: inherit;
+
+    transition:
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        background 160ms ease;
+}
+
+.ha-input-wrap input {
+    height: 58px;
+
+    padding:
+        0
+        17px
+        0
+        54px;
+}
+
+.ha-input-wrap textarea {
+    min-height: 105px;
+
+    resize: vertical;
+
+    padding:
+        15px
+        17px
+        15px
+        54px;
+
+    line-height: 1.5;
+}
+
+.ha-input-wrap input::placeholder,
+.ha-input-wrap textarea::placeholder {
+    color: #9aa6a3;
+}
+
+.ha-input-wrap input:focus,
+.ha-input-wrap textarea:focus {
+    border-color:
+        rgba(176, 138, 66, 0.70);
+
+    background: #fff;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(201, 169, 97, 0.10);
+}
+
+.ha-textarea-wrap > svg {
+    top: 16px;
+}
+
+
+/* =========================================================
+   SEND BUTTON
+   ========================================================= */
+
+.ha-contact-submit {
+    width: 100%;
+
+    min-height: 64px;
+
+    display: grid;
+
+    grid-template-columns:
+        26px
+        1fr
+        26px;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 6px;
+
+    border: 0;
+
+    border-radius: 999px;
+
+    background: #123f35;
+
+    color: #fff;
+
+    box-shadow:
+        0 14px 30px
+        rgba(18, 63, 53, 0.18);
+
+    font-size: 16px;
+
+    font-weight: 700;
+}
+
+.ha-contact-submit span:nth-child(2) {
+    text-align: center;
+}
+
+.ha-contact-submit span:first-child,
+.ha-contact-submit span:last-child {
+    font-size: 20px;
+}
+
+.ha-contact-submit:hover {
+    background: #0f352d;
+
+    transform: translateY(-1px);
+}
+
+.ha-contact-response-note {
+    margin:
+        15px
+        0
+        0;
+
+    text-align: center;
+
+    color: #70807b;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 980px) {
+
+    .ha-contact-shell {
+        grid-template-columns: 1fr;
+
+        gap: 42px;
+    }
+
+    .ha-contact-form-panel {
+        max-width: 760px;
+
+        width: 100%;
+
+        margin: 0 auto;
+
+        box-sizing: border-box;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .ha-contact-shell {
+        width:
+            min(
+                calc(100% - 28px),
+                560px
+            );
+    }
+
+    .ha-contact-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .ha-contact-card {
+        min-height: 132px;
+    }
+
+    .ha-contact-form-head {
+        flex-direction: column;
+    }
+
+    .ha-contact-help-badge {
+        align-self: flex-start;
+    }
+
+    .ha-contact-form-panel {
+        padding:
+            25px
+            20px;
+
+        border-radius: 24px;
+    }
+
+    .ha-contact-intro {
+        font-size: 19px;
+    }
+
+    .ha-contact-tagline {
+        letter-spacing: 1.4px;
+
+        line-height: 1.6;
+    }
+}
+/* =========================================================
+   CONTACT SECTION — FINAL OVERRIDE / CONFLICT FIX
+   ========================================================= */
+
+.ha-contact {
+    overflow: visible;
+}
+
+.ha-contact-shell {
+    align-items: start;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+
+/* -------------------------
+   LEFT CONTACT CARDS
+   ------------------------- */
+
+.ha-contact-cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.ha-contact-card {
+    box-sizing: border-box;
+    min-width: 0;
+    overflow: hidden;
+
+    display: flex;
+    align-items: flex-start;
+
+    padding: 26px 44px 26px 24px;
+
+    min-height: 175px;
+
+    line-height: normal;
+    letter-spacing: normal;
+
+    font-family: inherit;
+}
+
+.ha-contact-card-copy {
+    min-width: 0;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    line-height: normal;
+    letter-spacing: normal;
+}
+
+.ha-contact-card-copy strong {
+    display: block;
+
+    margin: 0;
+
+    color: #173f35;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    line-height: 1.15;
+    letter-spacing: normal;
+
+    white-space: normal;
+}
+
+.ha-contact-card-copy small {
+    display: block;
+
+    margin-top: 10px;
+
+    color: #60716d;
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    line-height: 1.45;
+    letter-spacing: normal;
+
+    white-space: normal;
+}
+
+.ha-contact-card-copy b {
+    display: block;
+
+    margin-top: 12px;
+
+    color: #b08a42;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    line-height: 1.35;
+    letter-spacing: 1px;
+
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.ha-contact-icon {
+    flex: 0 0 58px;
+
+    width: 58px;
+    height: 58px;
+
+    margin-right: 18px;
+
+    line-height: normal;
+}
+
+.ha-contact-arrow {
+    flex-shrink: 0;
+
+    line-height: 1;
+}
+
+
+/* -------------------------
+   CONTACT INTRO / NOTE
+   ------------------------- */
+
+.ha-contact-intro {
+    line-height: 1.55;
+    letter-spacing: normal;
+}
+
+.contact-note,
+.ha-contact p {
+    line-height: 1.6;
+}
+
+
+/* -------------------------
+   RIGHT FORM PANEL
+   ------------------------- */
+
+.ha-contact-form-panel {
+    width: 100%;
+    box-sizing: border-box;
+
+    align-self: start;
+
+    padding: 38px 40px 40px;
+
+    overflow: hidden;
+}
+
+.ha-contact-form-head {
+    width: 100%;
+
+    margin-bottom: 28px;
+
+    line-height: normal;
+}
+
+.ha-contact-form-head h3 {
+    margin: 0;
+
+    color: #173f35;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 38px;
+    font-weight: 700;
+
+    line-height: 1.12;
+    letter-spacing: normal;
+
+    white-space: normal;
+}
+
+.ha-contact-form-head p {
+    margin: 10px 0 0;
+
+    color: #687974;
+
+    font-family: inherit;
+
+    font-size: 15px;
+    font-weight: 400;
+
+    line-height: 1.5;
+    letter-spacing: normal;
+}
+
+
+/* -------------------------
+   FORM LABELS
+   ------------------------- */
+
+.ha-contact-form > label {
+    display: block;
+
+    margin: 0 0 22px;
+
+    color: #173f35;
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    line-height: 1.4;
+    letter-spacing: normal;
+}
+
+.ha-input-wrap {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 9px;
+
+    line-height: normal;
+}
+
+.ha-input-wrap input,
+.ha-input-wrap textarea {
+    box-sizing: border-box;
+
+    font-family: inherit;
+
+    line-height: 1.4;
+    letter-spacing: normal;
+}
+
+
+/* -------------------------
+   FORM BUTTON
+   ------------------------- */
+
+.ha-contact-submit {
+    box-sizing: border-box;
+
+    min-height: 64px;
+
+    font-family: inherit;
+
+    line-height: 1;
+    letter-spacing: normal;
+
+    cursor: pointer;
+
+    transition:
+        transform 180ms ease,
+        background 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.ha-contact-response-note {
+    line-height: 1.5;
+}
+
+
+/* -------------------------
+   DESKTOP BALANCE
+   ------------------------- */
+
+@media (min-width: 981px) {
+
+    .ha-contact-shell {
+        grid-template-columns:
+            minmax(560px, 1fr)
+            minmax(520px, 0.95fr);
+
+        gap: 64px;
+    }
+
+    .ha-contact-form-panel {
+        margin-top: 0;
+    }
+}
+
+
+/* -------------------------
+   TABLET
+   ------------------------- */
+
+@media (max-width: 980px) {
+
+    .ha-contact-shell {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+    .ha-contact-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ha-contact-form-panel {
+        width: 100%;
+    }
+}
+
+
+/* -------------------------
+   MOBILE
+   ------------------------- */
+
+@media (max-width: 640px) {
+
+    .ha-contact-shell {
+        width: calc(100% - 28px);
+
+        padding-top: 10px;
+    }
+
+    .ha-contact-cards {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+    .ha-contact-card {
+        min-height: 145px;
+
+        padding: 22px 40px 22px 20px;
+    }
+
+    .ha-contact-form-panel {
+        padding: 28px 20px 30px;
+
+        border-radius: 24px;
+    }
+
+    .ha-contact-form-head h3 {
+        font-size: 30px;
+    }
+}
+
+/* =========================================================
+   HUSNA ARTISTRY — PREMIUM CONTACT SECTION
+   ========================================================= */
+
+/* ---------- CONTACT HERO ---------- */
+
+.ha-contact-hero {
+    position: relative;
+    z-index: 2;
+
+    width: min(1100px, calc(100% - 30px));
+    margin: 0 auto;
+
+    padding: 10px 0 48px;
+
+    text-align: center;
+}
+
+.ha-contact-eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+
+    margin-bottom: 18px;
+
+    color: #9a8969;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    line-height: 1.4;
+    letter-spacing: 4px;
+}
+
+.ha-contact-eyebrow span {
+    color: #c9a961;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.ha-contact-main-title {
+    margin: 0;
+
+    color: #123f35;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 700;
+
+    line-height: 0.98;
+    letter-spacing: -2px;
+}
+
+.ha-contact-title-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+
+    width: min(680px, 90%);
+
+    margin: 22px auto 0;
+}
+
+.ha-contact-title-line span {
+    flex: 1;
+
+    height: 1px;
+
+    background: rgba(176, 138, 66, 0.55);
+}
+
+.ha-contact-title-line strong {
+    color: #31574f;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    line-height: 1.3;
+    letter-spacing: 5px;
+
+    white-space: nowrap;
+}
+
+.ha-contact-main-subtitle {
+    max-width: 900px;
+
+    margin: 20px auto 0;
+
+    color: #61736e;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(18px, 2vw, 23px);
+    font-style: italic;
+
+    line-height: 1.55;
+}
+
+
+/* ---------- CONTACT GRID ---------- */
+
+.contact-grid {
+    align-items: start;
+}
+
+.ha-contact-shell {
+    align-items: start;
+}
+
+
+/* ---------- LEFT CONTACT CARDS ---------- */
+
+.ha-contact-cards {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.ha-contact-card {
+    position: relative;
+
+    box-sizing: border-box;
+
+    min-width: 0;
+    min-height: 175px;
+
+    display: flex;
+    align-items: flex-start;
+
+    padding: 26px 48px 26px 24px;
+
+    overflow: hidden;
+
+    line-height: normal;
+    letter-spacing: normal;
+}
+
+.ha-contact-card-copy {
+    flex: 1;
+
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    line-height: normal;
+    letter-spacing: normal;
+}
+
+.ha-contact-card-copy strong {
+    display: block;
+
+    margin: 0;
+
+    color: #173f35;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    line-height: 1.15;
+    letter-spacing: normal;
+
+    white-space: normal;
+}
+
+.ha-contact-card-copy small {
+    display: block;
+
+    margin-top: 10px;
+
+    color: #60716d;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    line-height: 1.45;
+    letter-spacing: normal;
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+}
+
+.ha-contact-card-copy b {
+    display: block;
+
+    margin-top: 12px;
+
+    color: #b08a42;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    line-height: 1.35;
+    letter-spacing: 1px;
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+}
+
+.ha-contact-icon {
+    flex: 0 0 58px;
+
+    width: 58px;
+    height: 58px;
+
+    margin-right: 18px;
+
+    line-height: normal;
+}
+
+.ha-contact-arrow {
+    position: absolute;
+
+    top: 28px;
+    right: 18px;
+
+    flex-shrink: 0;
+
+    line-height: 1;
+}
+
+
+/* ---------- FORM PANEL ---------- */
+
+.ha-contact-form-panel {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    align-self: start;
+
+    padding: 38px 40px 40px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(38, 66, 59, 0.10);
+
+    box-shadow:
+        0 28px 70px rgba(25, 53, 45, 0.12);
+}
+
+.ha-contact-form-head {
+    width: 100%;
+
+    margin-bottom: 28px;
+
+    line-height: normal;
+}
+
+.ha-contact-form-head h3 {
+    margin: 0;
+
+    color: #173f35;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 38px;
+    font-weight: 700;
+
+    line-height: 1.12;
+    letter-spacing: normal;
+}
+
+.ha-contact-form-head p {
+    margin: 10px 0 0;
+
+    color: #687974;
+
+    font-size: 15px;
+    font-weight: 400;
+
+    line-height: 1.5;
+}
+
+
+/* ---------- FORM LABELS ---------- */
+
+.ha-contact-form > label {
+    display: block;
+
+    margin: 0 0 22px;
+
+    color: #173f35;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+.ha-input-wrap {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 9px;
+
+    line-height: normal;
+}
+
+.ha-input-wrap input,
+.ha-input-wrap textarea {
+    box-sizing: border-box;
+
+    width: 100%;
+
+    font-family: inherit;
+
+    line-height: 1.4;
+}
+
+
+/* ---------- FORM BUTTON ---------- */
+
+.ha-contact-submit {
+    box-sizing: border-box;
+
+    width: 100%;
+    min-height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    font-family: inherit;
+
+    line-height: 1;
+    letter-spacing: normal;
+
+    cursor: pointer;
+
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.ha-contact-submit:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 28px rgba(20, 63, 53, 0.18);
+}
+
+.ha-contact-response-note {
+    margin-top: 12px;
+
+    text-align: center;
+
+    color: #7a8985;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 981px) {
+
+    .contact-grid {
+        grid-template-columns:
+            minmax(560px, 1fr)
+            minmax(520px, 0.95fr);
+
+        gap: 64px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 980px) {
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+    .ha-contact-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ha-contact-form-panel {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .ha-contact-hero {
+        width: calc(100% - 28px);
+
+        padding-bottom: 34px;
+    }
+
+    .ha-contact-eyebrow {
+        gap: 10px;
+
+        font-size: 9px;
+        letter-spacing: 2.5px;
+    }
+
+    .ha-contact-main-title {
+        font-size: clamp(42px, 13vw, 62px);
+
+        letter-spacing: -1px;
+    }
+
+    .ha-contact-title-line {
+        gap: 12px;
+    }
+
+    .ha-contact-title-line strong {
+        font-size: 9px;
+        letter-spacing: 2.5px;
+    }
+
+    .ha-contact-main-subtitle {
+        font-size: 17px;
+    }
+
+    .ha-contact-desktop-break {
+        display: none;
+    }
+
+    .ha-contact-cards {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+    .ha-contact-card {
+        min-height: 145px;
+
+        padding: 22px 42px 22px 20px;
+    }
+
+    .ha-contact-form-panel {
+        padding: 28px 20px 30px;
+
+        border-radius: 24px;
+    }
+
+    .ha-contact-form-head h3 {
+        font-size: 30px;
+    }
+}
+
+/* =========================================================
+   CONTACT CARDS — HOVER INTERACTION
+   Studio Location + Shipping Information
+   ========================================================= */
+
+.ha-contact-card {
+  cursor: pointer;
+
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+.ha-contact-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 18px 38px rgba(25, 55, 47, 0.12);
+}
+
+
+/* Icon movement */
+
+.ha-contact-card:hover .ha-contact-icon {
+  transform: translateY(-2px) scale(1.04);
+
+  transition: transform 220ms ease;
+}
+
+
+/* Arrow movement */
+
+.ha-contact-card:hover .ha-contact-arrow {
+  transform: translateX(5px);
+
+  transition: transform 220ms ease;
+}
+
+
+/* Title subtle movement */
+
+.ha-contact-card:hover .ha-contact-card-copy strong {
+  transform: translateX(2px);
+
+  transition: transform 220ms ease;
+}
+
+/* =========================================================
+   HUSNA ARTISTRY — CONTACT SECTION DARK MODE FINAL FIX
+   ========================================================= */
+
+html.dark .contact-section,
+body.dark .contact-section,
+html.dark-mode .contact-section,
+body.dark-mode .contact-section,
+html[data-theme="dark"] .contact-section,
+body[data-theme="dark"] .contact-section {
+    background:
+        radial-gradient(
+            circle at 12% 28%,
+            rgba(201, 169, 97, 0.10),
+            transparent 28rem
+        ),
+        linear-gradient(
+            135deg,
+            #0d2f27,
+            #08271f 65%,
+            #06231c
+        ) !important;
+}
+
+
+/* ---------- PREMIUM CONTACT HERO ---------- */
+
+html.dark .ha-contact-eyebrow,
+body.dark .ha-contact-eyebrow,
+html.dark-mode .ha-contact-eyebrow,
+body.dark-mode .ha-contact-eyebrow,
+html[data-theme="dark"] .ha-contact-eyebrow,
+body[data-theme="dark"] .ha-contact-eyebrow {
+    color: #d8b96f !important;
+}
+
+html.dark .ha-contact-main-title,
+body.dark .ha-contact-main-title,
+html.dark-mode .ha-contact-main-title,
+body.dark-mode .ha-contact-main-title,
+html[data-theme="dark"] .ha-contact-main-title,
+body[data-theme="dark"] .ha-contact-main-title {
+    color: #f5f0df !important;
+
+    text-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.22);
+}
+
+html.dark .ha-contact-title-line strong,
+body.dark .ha-contact-title-line strong,
+html.dark-mode .ha-contact-title-line strong,
+body.dark-mode .ha-contact-title-line strong,
+html[data-theme="dark"] .ha-contact-title-line strong,
+body[data-theme="dark"] .ha-contact-title-line strong {
+    color: #d8b96f !important;
+}
+
+html.dark .ha-contact-main-subtitle,
+body.dark .ha-contact-main-subtitle,
+html.dark-mode .ha-contact-main-subtitle,
+body.dark-mode .ha-contact-main-subtitle,
+html[data-theme="dark"] .ha-contact-main-subtitle,
+body[data-theme="dark"] .ha-contact-main-subtitle {
+    color: #c8d5ce !important;
+}
+
+
+/* =========================================================
+   CONTACT CARDS
+   ========================================================= */
+
+html.dark .ha-contact-card,
+body.dark .ha-contact-card,
+html.dark-mode .ha-contact-card,
+body.dark-mode .ha-contact-card,
+html[data-theme="dark"] .ha-contact-card,
+body[data-theme="dark"] .ha-contact-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.095),
+            rgba(255, 255, 255, 0.045)
+        ) !important;
+
+    border-color:
+        rgba(223, 201, 142, 0.18) !important;
+
+    box-shadow:
+        0 16px 38px rgba(0, 0, 0, 0.20) !important;
+
+    color: #f5f0df !important;
+}
+
+
+/* Make ALL four cards interactive */
+
+.ha-contact-card {
+    cursor: pointer;
+
+    transition:
+        transform 220ms ease,
+        box-shadow 220ms ease,
+        border-color 220ms ease;
+}
+
+
+/* Studio + Shipping were previously cursor: default */
+
+.ha-contact-card-static {
+    cursor: pointer !important;
+}
+
+
+/* Same premium movement for ALL cards */
+
+.ha-contact-card:hover {
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(201, 169, 97, 0.55);
+
+    box-shadow:
+        0 22px 45px rgba(0, 0, 0, 0.22);
+}
+
+
+/* ---------- CARD TITLES ---------- */
+
+html.dark .ha-contact-card-copy strong,
+body.dark .ha-contact-card-copy strong,
+html.dark-mode .ha-contact-card-copy strong,
+body.dark-mode .ha-contact-card-copy strong,
+html[data-theme="dark"] .ha-contact-card-copy strong,
+body[data-theme="dark"] .ha-contact-card-copy strong {
+    color: #f5f0df !important;
+
+    transition:
+        transform 220ms ease,
+        color 220ms ease;
+}
+
+.ha-contact-card:hover .ha-contact-card-copy strong {
+    transform: translateX(2px);
+}
+
+
+/* ---------- CARD DESCRIPTION ---------- */
+
+html.dark .ha-contact-card-copy small,
+body.dark .ha-contact-card-copy small,
+html.dark-mode .ha-contact-card-copy small,
+body.dark-mode .ha-contact-card-copy small,
+html[data-theme="dark"] .ha-contact-card-copy small,
+body[data-theme="dark"] .ha-contact-card-copy small {
+    color: #bdcbc4 !important;
+}
+
+
+/* ---------- EMAIL / INSTAGRAM DETAILS ---------- */
+
+html.dark .ha-contact-card-copy b,
+body.dark .ha-contact-card-copy b,
+html.dark-mode .ha-contact-card-copy b,
+body.dark-mode .ha-contact-card-copy b,
+html[data-theme="dark"] .ha-contact-card-copy b,
+body[data-theme="dark"] .ha-contact-card-copy b {
+    color: #d8b96f !important;
+}
+
+
+/* ---------- ICON MOVEMENT ---------- */
+
+.ha-contact-card .ha-contact-icon {
+    transition:
+        transform 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.ha-contact-card:hover .ha-contact-icon {
+    transform: translateY(-2px) scale(1.04);
+}
+
+
+/* ---------- ARROW MOVEMENT ---------- */
+
+.ha-contact-card .ha-contact-arrow {
+    transition:
+        transform 220ms ease,
+        background 220ms ease,
+        color 220ms ease;
+}
+
+.ha-contact-card:hover .ha-contact-arrow {
+    transform: translateX(5px);
+}
+
+
+/* ---------- ARROW DARK MODE ---------- */
+
+html.dark .ha-contact-arrow,
+body.dark .ha-contact-arrow,
+html.dark-mode .ha-contact-arrow,
+body.dark-mode .ha-contact-arrow,
+html[data-theme="dark"] .ha-contact-arrow,
+body[data-theme="dark"] .ha-contact-arrow {
+    color: #d8b96f !important;
+}
+
+
+/* =========================================================
+   FORM PANEL
+   ========================================================= */
+
+html.dark .ha-contact-form-panel,
+body.dark .ha-contact-form-panel,
+html.dark-mode .ha-contact-form-panel,
+body.dark-mode .ha-contact-form-panel,
+html[data-theme="dark"] .ha-contact-form-panel,
+body[data-theme="dark"] .ha-contact-form-panel,
+
+html.dark .contact-form,
+body.dark .contact-form,
+html.dark-mode .contact-form,
+body.dark-mode .contact-form,
+html[data-theme="dark"] .contact-form,
+body[data-theme="dark"] .contact-form {
+    background:
+        linear-gradient(
+            145deg,
+            #173b32,
+            #102f27
+        ) !important;
+
+    border-color:
+        rgba(223, 201, 142, 0.18) !important;
+
+    box-shadow:
+        0 28px 70px rgba(0, 0, 0, 0.30) !important;
+}
+
+
+/* ---------- FORM HEADING ---------- */
+
+html.dark .ha-contact-form-head h3,
+body.dark .ha-contact-form-head h3,
+html.dark-mode .ha-contact-form-head h3,
+body.dark-mode .ha-contact-form-head h3,
+html[data-theme="dark"] .ha-contact-form-head h3,
+body[data-theme="dark"] .ha-contact-form-head h3 {
+    color: #f5f0df !important;
+}
+
+
+/* ---------- FORM SUBTITLE ---------- */
+
+html.dark .ha-contact-form-head p,
+body.dark .ha-contact-form-head p,
+html.dark-mode .ha-contact-form-head p,
+body.dark-mode .ha-contact-form-head p,
+html[data-theme="dark"] .ha-contact-form-head p,
+body[data-theme="dark"] .ha-contact-form-head p {
+    color: #b9c9c2 !important;
+}
+
+
+/* ---------- FORM LABELS ---------- */
+
+html.dark .ha-contact-form > label,
+body.dark .ha-contact-form > label,
+html.dark-mode .ha-contact-form > label,
+body.dark-mode .ha-contact-form > label,
+html[data-theme="dark"] .ha-contact-form > label,
+body[data-theme="dark"] .ha-contact-form > label {
+    color: #f5f0df !important;
+}
+
+
+/* ---------- INPUTS ---------- */
+
+html.dark .ha-input-wrap input,
+body.dark .ha-input-wrap input,
+html.dark-mode .ha-input-wrap input,
+body.dark-mode .ha-input-wrap input,
+html[data-theme="dark"] .ha-input-wrap input,
+body[data-theme="dark"] .ha-input-wrap input,
+
+html.dark .ha-input-wrap textarea,
+body.dark .ha-input-wrap textarea,
+html.dark-mode .ha-input-wrap textarea,
+body.dark-mode .ha-input-wrap textarea,
+html[data-theme="dark"] .ha-input-wrap textarea,
+body[data-theme="dark"] .ha-input-wrap textarea {
+    background: #f8f7f3 !important;
+
+    color: #173f35 !important;
+
+    border-color:
+        rgba(201, 169, 97, 0.25) !important;
+}
+
+
+/* Placeholder */
+
+html.dark .ha-input-wrap input::placeholder,
+body.dark .ha-input-wrap input::placeholder,
+html.dark-mode .ha-input-wrap input::placeholder,
+body.dark-mode .ha-input-wrap input::placeholder,
+html[data-theme="dark"] .ha-input-wrap input::placeholder,
+body[data-theme="dark"] .ha-input-wrap input::placeholder,
+
+html.dark .ha-input-wrap textarea::placeholder,
+body.dark .ha-input-wrap textarea::placeholder,
+html.dark-mode .ha-input-wrap textarea::placeholder,
+body.dark-mode .ha-input-wrap textarea::placeholder,
+html[data-theme="dark"] .ha-input-wrap textarea::placeholder,
+body[data-theme="dark"] .ha-input-wrap textarea::placeholder {
+    color: #8b9993 !important;
+
+    opacity: 1;
+}
+
+
+/* ---------- INPUT FOCUS ---------- */
+
+html.dark .ha-input-wrap:focus-within input,
+body.dark .ha-input-wrap:focus-within input,
+html.dark-mode .ha-input-wrap:focus-within input,
+body.dark-mode .ha-input-wrap:focus-within input,
+html[data-theme="dark"] .ha-input-wrap:focus-within input,
+body[data-theme="dark"] .ha-input-wrap:focus-within input,
+
+html.dark .ha-input-wrap:focus-within textarea,
+body.dark .ha-input-wrap:focus-within textarea,
+html.dark-mode .ha-input-wrap:focus-within textarea,
+body.dark-mode .ha-input-wrap:focus-within textarea,
+html[data-theme="dark"] .ha-input-wrap:focus-within textarea,
+body[data-theme="dark"] .ha-input-wrap:focus-within textarea {
+    border-color: #c9a961 !important;
+
+    box-shadow:
+        0 0 0 4px rgba(201, 169, 97, 0.10);
+}
+
+
+/* ---------- RESPONSE NOTE ---------- */
+
+html.dark .ha-contact-response-note,
+body.dark .ha-contact-response-note,
+html.dark-mode .ha-contact-response-note,
+body.dark-mode .ha-contact-response-note,
+html[data-theme="dark"] .ha-contact-response-note,
+body[data-theme="dark"] .ha-contact-response-note {
+    color: #aebeb5 !important;
+}

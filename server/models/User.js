@@ -107,9 +107,23 @@ const userSchema = new mongoose.Schema(
     /* ---------- PASSWORD ---------- */
 
     passwordHash: {
-      type: String,
-      required: true,
-    },
+  type: String,
+  default: null,
+},
+
+/* ---------- GOOGLE AUTHENTICATION ---------- */
+
+googleId: {
+  type: String,
+  unique: true,
+  sparse: true,
+},
+
+authProvider: {
+  type: String,
+  enum: ["local", "google"],
+  default: "local",
+},
 
     /* =====================================================
        PASSWORD RESET
@@ -148,10 +162,35 @@ const userSchema = new mongoose.Schema(
 
     /* ---------- ACCOUNT STATUS ---------- */
 
-    isBlocked: {
-      type: Boolean,
-      default: false,
-    },
+isBlocked: {
+  type: Boolean,
+  default: false,
+},
+
+/* ---------- EMAIL VERIFICATION ---------- */
+
+emailVerified: {
+  type: Boolean,
+  default: false,
+},
+
+emailVerificationCodeHash: {
+  type: String,
+  default: null,
+  select: false,
+},
+
+emailVerificationExpires: {
+  type: Date,
+  default: null,
+  select: false,
+},
+
+emailVerificationAttempts: {
+  type: Number,
+  default: 0,
+  select: false,
+},
   },
   {
     timestamps: true,
