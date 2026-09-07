@@ -20,6 +20,10 @@ const adminRoutes = require("./routes/admin");
 const cookieParser = require( "cookie-parser" );
 
 const app = express();
+
+// Trust the hosting platform's reverse proxy
+app.set("trust proxy", 1);
+
 connectDB();
 
 /* ---------- Security middleware ---------- */
