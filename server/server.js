@@ -20,6 +20,12 @@ const adminRoutes = require("./routes/admin");
 const cookieParser = require( "cookie-parser" );
 
 const app = express();
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    message: "Server is running"
+  });
+});
 
 // Trust the hosting platform's reverse proxy
 app.set("trust proxy", 1);
