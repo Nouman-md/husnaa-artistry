@@ -8,7 +8,7 @@
    CONFIG
    ========================================================= */
 
-const BUSINESS_EMAIL = "aliyasoughat.k@gmail.com";
+const BUSINESS_EMAIL = "husnaartistry.support@gmail.com";
 
 /* =========================================================
    GLOBAL STATE
