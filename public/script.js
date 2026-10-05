@@ -374,14 +374,7 @@ document.querySelectorAll(
         });
     });
 });
-        event.preventDefault();
-
-        target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-    });
-});
+      
 
 /* =========================================================
    MODALS
