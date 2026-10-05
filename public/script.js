@@ -3148,6 +3148,8 @@ if (checkoutBtn) {
         "click",
         () => {
 
+            if (!requireLogin()) return;
+
             if (!cart.length) {
 
                 showToast(
@@ -3163,16 +3165,11 @@ if (checkoutBtn) {
                 cart
             );
 
-            /*
-             * Keep your existing checkout page.
-             */
-
             window.location.href =
                 "/checkout.html";
         }
     );
 }
-
 /* =========================================================
    LOGIN
    ========================================================= */
