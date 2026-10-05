@@ -3,8 +3,30 @@
    Requires api.js to be loaded first.
    ========================================================= */
 
+
+/*
+ * =========================================================
+ * LOGIN REQUIRED
+ * =========================================================
+ *
+ * Guests cannot access the checkout page directly.
+ * They are sent back to the homepage where the existing
+ * login modal can be opened.
+ */
+
+if (!getToken()) {
+    window.location.href = "/index.html?loginRequired=checkout";
+}
+
+
+/*
+ * =========================================================
+ * LOCAL STORAGE HELPER
+ * =========================================================
+ */
+
 function loadLocal(key, fallback) {
-  try {
+try {
     const raw = localStorage.getItem(key);
     return raw ? JSON.parse(raw) : fallback;
   } catch (e) {
