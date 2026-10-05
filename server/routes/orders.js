@@ -5,14 +5,13 @@ const { body, validationResult } = require("express-validator");
 const Order = require("../models/Order");
 const Product = require("../models/Product");
 const getRazorpay = require("../utils/razorpay");
-const { optionalCustomer, verifyCustomer } = require("../middleware/auth");
-
+const { verifyCustomer } = require("../middleware/auth");
 const FLAT_DELIVERY_CHARGE = 0; // free shipping all over India, per current business policy
 
 // STEP 1 — Create a pending order + a Razorpay order to pay against.
 router.post(
   "/",
-  optionalCustomer,
+  verifyCustomer,
   [
     body("items").isArray({ min: 1 }).withMessage("Your cart is empty."),
     body("shippingAddress.fullName").trim().notEmpty().withMessage("Full name is required."),
@@ -63,7 +62,7 @@ itemsTotal += sellingPrice * qty;
         itemsTotal,
         deliveryCharge: FLAT_DELIVERY_CHARGE,
         totalAmount,
-        user: req.userId || null,
+        user: req.userId,
       });
 
       const razorpay = getRazorpay();
