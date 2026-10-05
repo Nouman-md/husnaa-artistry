@@ -6191,6 +6191,18 @@ async function init() {
                 null;
         }
     }
+   const loginRequired =
+    new URLSearchParams(window.location.search)
+        .get("loginRequired");
+
+if (
+    loginRequired === "checkout" &&
+    !getToken()
+) {
+    setTimeout(() => {
+        openModal("loginModal");
+    }, 300);
+}
 
     /* Categories */
 
