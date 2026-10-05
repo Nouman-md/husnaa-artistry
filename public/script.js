@@ -239,11 +239,24 @@ if (sidebarOverlay) {
 
 document.querySelectorAll(".sidebar-link").forEach(link => {
 
-    link.addEventListener("click", () => {
+    link.addEventListener("click", event => {
+
+        const target =
+            link.getAttribute("href");
+
+        /*
+         * Collection requires login
+         */
+        if (
+            target === "#products" &&
+            !requireLogin()
+        ) {
+            event.preventDefault();
+            closeSidebarFn();
+            return;
+        }
 
         closeSidebarFn();
-
-        const target = link.getAttribute("href");
 
         if (
             target &&
@@ -266,14 +279,33 @@ document.querySelectorAll(".sidebar-link").forEach(link => {
     });
 });
 
+document.querySelectorAll(
+    'a[data-requires-login="true"]'
+).forEach(link => {
+
+    link.addEventListener("click", event => {
+
+        if (!requireLogin()) {
+            event.preventDefault();
+        }
+
+    });
+});
+
 document.getElementById("sidebarWishlistBtn")?.addEventListener("click", () => {
     closeSidebarFn();
+
+    if (!requireLogin()) return;
+
     renderWishlist();
     openDrawer("wishlistDrawer", "wishlistOverlay");
 });
 
 document.getElementById("sidebarCartBtn")?.addEventListener("click", () => {
     closeSidebarFn();
+
+    if (!requireLogin()) return;
+
     renderCart();
     openDrawer("cartDrawer", "cartOverlay");
 });
@@ -318,11 +350,30 @@ document.querySelectorAll(
             return;
         }
 
+        /*
+         * Collection requires login
+         */
+        if (
+            href === "#products" &&
+            !requireLogin()
+        ) {
+            event.preventDefault();
+            return;
+        }
+
         const target =
             document.querySelector(href);
 
         if (!target) return;
 
+        event.preventDefault();
+
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+});
         event.preventDefault();
 
         target.scrollIntoView({
@@ -543,6 +594,8 @@ if (cartBtn) {
         "click",
         () => {
 
+            if (!requireLogin()) return;
+
             renderCart();
 
             openDrawer(
@@ -552,7 +605,6 @@ if (cartBtn) {
         }
     );
 }
-
 /* WISHLIST BUTTON */
 
 const wishlistBtn = $("wishlistBtn");
@@ -563,6 +615,8 @@ if (wishlistBtn) {
         "click",
         () => {
 
+            if (!requireLogin()) return;
+
             renderWishlist();
 
             openDrawer(
@@ -572,7 +626,6 @@ if (wishlistBtn) {
         }
     );
 }
-
 /* Drawer close buttons */
 
 document.querySelectorAll(
@@ -1049,6 +1102,14 @@ if (applyPriceFilter) {
 /* =========================================================
    LOAD PRODUCTS
    ========================================================= */
+function requireLogin() {
+    if (typeof getToken === "function" && getToken()) {
+        return true;
+    }
+
+    openModal("loginModal");
+    return false;
+}
 
 async function loadProducts() {
 
@@ -1110,11 +1171,11 @@ async function loadProducts() {
             );
         }
 
-        const result =
-            await apiFetch(
-                "/products?" +
-                params.toString()
-            );
+       const result = await apiFetch(
+    getToken()
+        ? "/products?" + params.toString()
+        : "/products/featured"
+);
 
         products =
             Array.isArray(result)
@@ -1500,8 +1561,9 @@ function renderProducts() {
 
 async function openProductModal(id) {
 
-    if (!apiAvailable()) return;
+    if (!requireLogin()) return;
 
+    if (!apiAvailable()) return;
     try {
 
         const data =
@@ -2133,9 +2195,10 @@ async function toggleWishlist(
     productId
 ) {
 
+    if (!requireLogin()) return;
+
     const currentlyWished =
         isWishlisted(productId);
-
     try {
 
         if (
@@ -2474,8 +2537,9 @@ async function addToCart(
     qty = 1
 ) {
 
-    if (!product) return;
+    if (!requireLogin()) return;
 
+    if (!product) return;
     try {
 
         if (
